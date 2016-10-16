@@ -14,7 +14,6 @@ class Common extends CI_Controller
         $datamn['menu'] = $this->Common_model->get_menu($user_type);
         $datamn['menu_sub'] = $this->Common_model->get_sub($user_type);
         $this->load->view('template/frame',$datamn);
-        /*$this->form_validation->set_error_delimiters('<div class="error">', '</div>');*/
         date_default_timezone_set('Asia/Calcutta'); // to set the time zone
     }
 
@@ -24,11 +23,11 @@ class Common extends CI_Controller
     }
 
     /**
-     * @agaile
+     * @
      * date:15/10/2016
      * Parameter:none
      * Return type:none
-     * Description:function to fill menu based on the usertype
+     * Description:function to switch dash based on the usertype
      */
     public function check_type()
     {
@@ -37,7 +36,7 @@ class Common extends CI_Controller
     }
 
     /**
-     * @agaile
+     * @
      * date:15/10/2016
      * Parameter:none
      * Return type:none
@@ -50,11 +49,11 @@ class Common extends CI_Controller
     }
 
     /**
-     * @agaile
+     * @
      * date:15/10/2016
      * Parameter:none
      * Return type:none
-     * Description:function to load dashboard
+     * Description:function to load manager list
      */
     public function listmanager()
     {
@@ -63,4 +62,32 @@ class Common extends CI_Controller
         $this->load->view('template/footer'); 
     }    
     
+    /**
+     * @
+     * date:16/10/2016
+     * Parameter:none
+     * Return type:none
+     * Description:function to load booth list
+     */
+    public function listbooth()
+    {
+        $data['records'] = $this->Common_model->getbooths();
+        $this->load->view('admin/list_booth',$data);
+        $this->load->view('template/footer'); 
+    } 
+
+    /**
+     * @
+     * date:16/10/2016
+     * Parameter:none
+     * Return type:none
+     * Description:function to allocate booth to managers
+     */
+    public function allocatebooth()
+    {
+        $data['manager'] = $this->Common_model->getM_notassigned();        
+        $data['record'] = $this->Common_model->allbooth();
+        $this->load->view('admin/allocate_booth',$data);
+        $this->load->view('template/footer'); 
+    } 
 }

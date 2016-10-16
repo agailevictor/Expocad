@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2016 at 11:46 AM
+-- Generation Time: Oct 16, 2016 at 04:46 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -21,6 +21,33 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `expocad` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `expocad`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_booth`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_booth` (
+  `bid` int(11) NOT NULL AUTO_INCREMENT,
+  `bname` varchar(100) NOT NULL,
+  `space` varchar(100) NOT NULL,
+  `amount` decimal(10,0) NOT NULL,
+  `exid` int(11) DEFAULT NULL,
+  `mid` int(11) DEFAULT NULL,
+  `spid` int(11) DEFAULT NULL,
+  `staffid` int(11) DEFAULT NULL,
+  `is_all` varchar(10) NOT NULL,
+  PRIMARY KEY (`bid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_booth`
+--
+
+INSERT INTO `tbl_booth` (`bid`, `bname`, `space`, `amount`, `exid`, `mid`, `spid`, `staffid`, `is_all`) VALUES
+(1, 'Booth 1', '1500', '10000', NULL, NULL, NULL, NULL, 'N'),
+(2, 'Booth 2', '2000', '15000', NULL, 2, NULL, NULL, 'Y');
 
 -- --------------------------------------------------------
 
@@ -73,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `tbl_submenu` (
 
 INSERT INTO `tbl_submenu` (`sid`, `s_menu`, `url`, `sub_id`, `pid`, `status`) VALUES
 (1, 'Manager', 'common/listmanager', 'idManager', 1, 1),
-(2, 'Booth', 'Common/addbooth', 'idBooth', 1, 1),
+(2, 'Booth', 'Common/listbooth', 'idBooth', 1, 1),
 (3, 'Booth', 'Common/allocatebooth', 'idAllocateBooth', 2, 1),
 (4, 'Exhibitor', 'Common/approveexhibitor', 'idApproveExhi', 3, 1),
 (5, 'Booth', 'Common/approvebooth', 'idApproveBooth', 3, 1),

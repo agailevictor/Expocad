@@ -11,7 +11,7 @@ class Common_model extends CI_Model
     }
 
     /**
-     * @agaile
+     * @
      * date:15/10/2016
      * Parameter:username,password
      * Return type:boolean
@@ -39,7 +39,7 @@ class Common_model extends CI_Model
     }
 
     /**
-     * @agaile
+     * @
      * date: 15/10/2016
      * Parameter:user type id
      * Return type:array
@@ -53,7 +53,7 @@ class Common_model extends CI_Model
     } 
 
     /**
-     * @agaile
+     * @
      * date: 15/10/2016
      * Parameter:user type id
      * Return type:array
@@ -67,7 +67,7 @@ class Common_model extends CI_Model
     } 
 
     /**
-     * @agaile
+     * @
      * date: 15/10/2016
      * Parameter:none
      * Return type:array
@@ -82,5 +82,44 @@ class Common_model extends CI_Model
         $query = $this->db->get();
         $result = $query->result();
         return $result;
-    }        
+    }   
+
+    /**
+     * @
+     * date: 16/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get booth list
+     */
+    public function getbooths()
+    {
+        $query = "SELECT * FROM tbl_booth where is_all = 'N'";
+        return $this->db->query($query)->result();
+    }
+
+    /**
+     * @
+     * date: 16/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get booth list not allocated
+     */
+    public function allbooth()
+    {   
+        $query = "SELECT * FROM tbl_booth where is_all = 'N'";
+        return $this->db->query($query)->result();
+    }
+
+    /**
+     * @
+     * date: 16/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get Manager list not assigned
+     */
+    public function getM_notassigned()
+    {   
+        $query = "SELECT * FROM tbl_users where type = 2 and user_id not in ( select mid from tbl_booth where is_all = 'y')";
+        return $this->db->query($query)->result();
+    }              
 }

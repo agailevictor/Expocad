@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="col-md-8 sub-navbar-column">
                         <div class="sub-navbar-header">
-                            <h3>List Manager</h3>
+                            <h3>List Booth(s)</h3>
                         </div>
                         <ol class="breadcrumb navbar-text navbar-right no-bg">
                             <li class="current-parent">
@@ -40,12 +40,12 @@
                             <li class="active">
                                 Master
                             </li>
-                            <li class="active">List Manager</li>
+                            <li class="active">List Booth(s)</li>
                         </ol>
                     </div>
                     <div class="col-md-4">
                         <a class="btn btn-primary pull-right" style="margin-top: 20px;" href="" data-toggle="modal" data-target="#myModaladd" class="modaladd">
-                            Add Manager
+                            Add Booth
                         </a>
                     </div>                    
                 </div>
@@ -61,10 +61,9 @@
                     <thead>
                         <tr>
                             <th  style="font-weight: 600; color: #2c97de">No</th>
-                            <th  style="font-weight: 600; color: #2c97de">Name</th>
-                            <th  style="font-weight: 600; color: #2c97de">Username</th>
-                            <th  style="font-weight: 600; color: #2c97de">Email</th>
-                            <th  style="font-weight: 600; color: #2c97de">Mobile</th>
+                            <th  style="font-weight: 600; color: #2c97de">Booth Name</th>
+                            <th  style="font-weight: 600; color: #2c97de">Space</th>
+                            <th  style="font-weight: 600; color: #2c97de">Amount</th>
                             <th  style="font-weight: 600; color: #2c97de">Actions</th>                                                
                         </tr>
                     </thead>
@@ -72,14 +71,13 @@
                        <?php $sno=1;
                        foreach ($records as $records):?>
                        <tr>
-                        <td class="text-white"><?php echo $sno; ?></td>
-                        <td class="text-white"><?php echo $records->name; ?></td>
-                        <td class="text-white"><?php echo $records->user_name; ?></td>
-                        <td class="text-white"><?php echo $records->email; ?></td>
-                        <td class="text-white"><?php echo $records->mobile; ?></td>
+                        <td class="text-white"><?php echo $sno; ?></td>                                                                      
+                        <td class="text-white"><?php echo $records->bname; ?></td>
+                        <td class="text-white"><?php echo $records->space; ?></td>
+                        <td class="text-white"><?php echo $records->amount; ?></td>
                         <td class="text-center v-a-m">
                             <div class="btn-group" role="group" aria-label="...">
-                            <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-userId="<?php echo $records->user_id; ?>" data-Name="<?php echo $records->name; ?>" data-Username="<?php echo $records->user_name  ; ?>" data-email="<?php echo $records->email ; ?>" data-mobile="<?php echo $records->mobile ; ?>"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>
+                            <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-bId="<?php echo $records->bid; ?>" data-bname="<?php echo $records->bname; ?>" data-space="<?php echo $records->space; ?>" data-amount="<?php echo $records->amount; ?>"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>
                                 <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash">&nbsp;</span></a>
                             </div>
                         </td>                        
@@ -101,39 +99,32 @@
         <div class="modal-content">
            <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add New Manager</h4>
+            <h4 class="modal-title" id="myModalLabel">Add New Booth</h4>
         </div>
         <div class="modal-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-horizontal">
-                        <?php echo form_open('common/add_manager' , array('id' => 'add_manager'));?>
+                        <?php echo form_open('common/add_manager' , array('id' => 'add_booth'));?>
                         <div class="form-group">
-                            <label for="project_name" class="col-sm-3 control-label">Name</label>
+                            <label for="project_name" class="col-sm-3 control-label">Booth Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="strnameA" name="strnameA">
-                                <?php echo form_error('strnameA'); ?>
+                                <input type="text" class="form-control" id="strbnameA" name="strbnameA">
+                                <?php echo form_error('strbnameA'); ?>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="project_name" class="col-sm-3 control-label">Username</label>
+                            <label for="project_name" class="col-sm-3 control-label">Space</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="strusernameA" name="strusernameA">
-                                <?php echo form_error('strusrnameA'); ?>
+                                <input type="text" class="form-control" id="strspaceA" name="strspaceA">
+                                <?php echo form_error('strspaceA'); ?>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="from_datepicker" class="col-sm-3 control-label">Email</label>
+                            <label for="from_datepicker" class="col-sm-3 control-label">Amount</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control"  id="stremailA" name="stremailA">
-                                <?php echo form_error('stremailA'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="to_datepicker" class="col-sm-3 control-label">Mobile</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control"  id="strmobileA" name="strmobileA">
-                                <?php echo form_error('strmobileA'); ?>
+                                <input type="text" class="form-control"  id="stramountA" name="stramountA">
+                                <?php echo form_error('stramountA'); ?>
                             </div>
                         </div>
                     </div>
@@ -157,40 +148,33 @@
         <div class="modal-content">
            <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Edit Manager Details</h4>
+            <h4 class="modal-title" id="myModalLabel">Edit Booth Details</h4>
         </div>
         <div class="modal-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-horizontal">
-                        <?php echo form_open('common/update_manager' , array('id' => 'up_manager'));?>
+                        <?php echo form_open('common/update_booth' , array('id' => 'up_booth'));?>
                         <div class="form-group">
-                            <input type="hidden" id="userId" name="userId">
-                            <label for="project_name" class="col-sm-3 control-label">Name</label>
+                            <input type="hidden" id="bId" name="bId">
+                            <label for="project_name" class="col-sm-3 control-label">Booth Name</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="strname" name="strname">
-                                <?php echo form_error('strname'); ?>
+                                <?php echo form_error('strbname'); ?>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="project_name" class="col-sm-3 control-label">Username</label>
+                            <label for="project_name" class="col-sm-3 control-label">Space</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="strusername" name="strusername">
-                                <?php echo form_error('strusrname'); ?>
+                                <input type="text" class="form-control" id="strspace" name="strspace">
+                                <?php echo form_error('strspace'); ?>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="from_datepicker" class="col-sm-3 control-label">Email</label>
+                            <label for="from_datepicker" class="col-sm-3 control-label">Amount</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control"  id="stremail" name="stremail">
-                                <?php echo form_error('stremail'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="to_datepicker" class="col-sm-3 control-label">Mobile</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control"  id="strmobile" name="strmobile">
-                                <?php echo form_error('strmobile'); ?>
+                                <input type="text" class="form-control"  id="stramount" name="stramount">
+                                <?php echo form_error('stramount'); ?>
                             </div>
                         </div>
                     </div>
@@ -214,7 +198,7 @@
     $('div.dataTables_filter input').attr('placeholder', 'Enter the text here');
 </script>
 <script>
-    $("#idManager").addClass("active open");
+    $("#idBooth").addClass("active open");
 </script>
 <script>
     $(document).ready(function() {
@@ -248,7 +232,7 @@
             errorElement: "span",
             errorPlacement: function(error, element) {
                 error.appendTo(element.parent());
-                jQuery(element.parent()).addClass('has-error m-b-1'); // to show error on element also
+                jQuery(element.parent()).addClass('has-error m-b-1');
             }
 
         });
@@ -262,16 +246,14 @@
             }
         });
         $(".modaledit").click(function(){
-            var Id = $(this).attr("data-userId");            
-            var Name = $(this).attr("data-Name");
-            var Username = $(this).attr("data-username");
-            var Email = $(this).attr("data-email");
-            var Mobile = $(this).attr("data-mobile");           
-            $('#userId').val(Id);
-            $('#strname').val(Name) ;
-            $('#strusername').val(Username );
-            $('#stremail').val(Email) ;
-            $('#strmobile').val(Mobile);         
+            var bid = $(this).attr("data-bId");            
+            var bname = $(this).attr("data-bname");
+            var space = $(this).attr("data-space");
+            var amount = $(this).attr("data-amount");         
+            $('#bId').val(bid);
+            $('#strname').val(bname) ;
+            $('#strspace').val(space);
+            $('#stramount').val(amount) ;        
         });
     });
 </script>
