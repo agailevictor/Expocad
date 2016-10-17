@@ -121,5 +121,18 @@ class Common_model extends CI_Model
     {   
         $query = "SELECT * FROM tbl_users where type = 2 and user_id not in ( select mid from tbl_booth where is_all = 'y')";
         return $this->db->query($query)->result();
-    }              
+    }
+
+    /**
+     * @
+     * date: 16/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to populate highcharts
+     */
+    public function highchart()
+    {   
+        $query = "select bname,count(mid) as kount from tbl_booth group by bname";
+        return $this->db->query($query)->result();
+    }                
 }

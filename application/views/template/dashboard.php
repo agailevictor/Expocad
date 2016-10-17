@@ -141,17 +141,18 @@
                     $(document).ready(function() {
                         var chk = <?php echo $_SESSION['user_type']; ?>;
                         cal();
-                        if(chk = 1)
-                        {
-                            graph_admin();
-                        }
-                        if(chk = 2)
-                        {
-                            graph_manager();
-                        }
-                        if (chk = 3)
-                        {
-                        }
+                        highchart();
+                        // if(chk = 1)
+                        // {
+                        //     graph_admin();
+                        // }
+                        // if(chk = 2)
+                        // {
+                        //     graph_manager();
+                        // }
+                        // if (chk = 3)
+                        // {
+                        // }
                     });
                 </script>
                 <script type="text/javascript">
@@ -268,5 +269,69 @@
                         $('#calendar').fullCalendar({
                     // put your options and callbacks here
                 });
+                    }
+                </script>
+                <script type="text/javascript">
+                    function highchart()
+                    {
+                        $.ajax({
+                            type: 'POST',
+                            url: "<?php echo base_url('common/highchart'); ?>",
+                            data: {},
+                            async: false,
+                            cache: false,
+                            dataType: "json",
+                            success: function (data) {
+                                // if (data.status == "success") {
+                                //     if (data.count > 0) {
+                                        //console.log(data.status);
+                                        $('#container1').highcharts({
+                                            chart: {
+                                                type: 'column'
+                                            },
+                                            title: {
+                                                text: 'Manager Vs Booth'
+                                            },
+                                            xAxis: {
+                                                categories: [''],
+                                                crosshair: true
+                                            },
+                                            yAxis: {
+                                                min: 0,
+                                                title: {
+                                                    text: 'No'
+                                                }
+                                            },
+                                            tooltip: {
+                                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                                                footerFormat: '</table>',
+                                                shared: true,
+                                                useHTML: true
+                                            },
+                                            plotOptions: {
+                                                column: {
+                                                    pointPadding: 0.2,
+                                                    borderWidth: 0
+                                                }
+                                            },
+                                            series: data
+                                        });
+                                //     }
+                                //     else {
+
+                                //     }
+                                // } else {
+                                //     console.log(data.status);
+                                // }
+                            },
+                            failure: function () {
+                                console.log(' Ajax Failure');
+                            },
+                            complete: function () {
+                                console.log("complete");
+                            }
+                        });
                     }
                 </script>
