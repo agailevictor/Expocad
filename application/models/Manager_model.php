@@ -27,4 +27,17 @@ class Manager_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+
+    /**
+     * @
+     * date: 16/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get booth list
+     */
+    public function getbooths()
+    {
+        $query = "SELECT * FROM tbl_booth where is_all = 'N'";
+        return $this->db->query($query)->result();
+    }
 }

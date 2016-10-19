@@ -1,3 +1,9 @@
 UPDATE `expocad`.`tbl_submenu` SET `url` = 'Manager/staff' WHERE `tbl_submenu`.`sid` =6;
 
 INSERT INTO `expocad`.`tbl_users` (`user_id`, `user_name`, `password`, `name`, `email`, `mobile`, `type`, `parent_id`) VALUES (NULL, 'staff1', 'ZGVtbw==', 'Test Staff', 'staff1@expocad.com', '8888888888', '3', '1');
+
+INSERT INTO `expocad`.`tbl_submenu` (`sid`, `s_menu`, `url`, `sub_id`, `pid`, `status`) VALUES (NULL, 'Booth', 'Manager/listbooth', 'idBooth', '6', '1');
+
+DELETE FROM `expocad`.`tbl_submenu` WHERE `tbl_submenu`.`sid` = 9
+
+UPDATE `expocad`.`tbl_submenu` SET `url` = 'Manager/listbooth' WHERE `tbl_submenu`.`sid` =8;

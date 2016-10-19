@@ -32,4 +32,18 @@ class Manager extends CI_Controller
         $this->load->view('template/footer');
     }
 
+    /**
+     * @
+     * date:16/10/2016
+     * Parameter:none
+     * Return type:none
+     * Description:function to load booth list
+     */
+    public function listbooth()
+    {
+        $data['records'] = $this->Manager_model->getbooths();
+        $this->load->view('manager/list_booth',$data);
+        $this->load->view('template/footer');
+    }
+
 }
