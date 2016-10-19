@@ -120,7 +120,7 @@
     <!-- END Favicon -->
 
     <!-- File Upload Style : START-->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/jqueryfiler/css/googlefonts.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/jqueryfiler/css/goolefonts.css" type="text/css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/jqueryfiler/css/jquery.filer.css" type="text/css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/jqueryfiler/css/jquery.filer-dragdropbox-theme.css" type="text/css" />
     <!-- File Upload Style : END-->	
