@@ -1,1 +1,3 @@
 UPDATE `expocad`.`tbl_submenu` SET `url` = 'Manager/staff' WHERE `tbl_submenu`.`sid` =6;
+
+INSERT INTO `expocad`.`tbl_users` (`user_id`, `user_name`, `password`, `name`, `email`, `mobile`, `type`, `parent_id`) VALUES (NULL, 'staff1', 'ZGVtbw==', 'Test Staff', 'staff1@expocad.com', '8888888888', '3', '1');

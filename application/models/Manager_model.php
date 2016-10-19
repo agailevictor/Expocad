@@ -19,7 +19,7 @@ class Manager_model extends CI_Model
      */
     public function getStaffs()
     {
-        $where ='type = 2';
+        $where ='type = 3';
         $this->db->select('*');
         $this->db->from('tbl_users');
         $this->db->where($where);
