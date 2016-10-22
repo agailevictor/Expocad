@@ -1,0 +1,32 @@
+
+
+ALTER TABLE `tbl_users` ADD `gender` INT NOT NULL AFTER `name` ,
+ADD `age` INT NOT NULL AFTER `gender` ,
+ADD `housename` VARCHAR( 100 ) NOT NULL AFTER `age` ,
+ADD `streetname` VARCHAR( 100 ) NOT NULL AFTER `housename` ,
+ADD `city` VARCHAR( 100 ) NOT NULL AFTER `streetname` ,
+ADD `state` VARCHAR( 100 ) NOT NULL AFTER `city` ,
+ADD `pincode` VARCHAR( 100 ) NOT NULL AFTER `state` ;
+
+
+CREATE TABLE `tbl_gender` (
+ `gender_id` int(11) NOT NULL AUTO_INCREMENT,
+ `type` varchar(100) NOT NULL,
+ PRIMARY KEY (`gender_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+INSERT INTO `expocad`.`tbl_gender` (`gender_id`, `type`) VALUES (NULL, 'Female'), (NULL, 'Male');
+
+UPDATE `expocad`.`tbl_users` SET `gender` = '2', `age` = '29', `housename` = 'House Name', `streetname` = 'Street Name', `city` = 'City', `state` = 'State', `pincode` = '123456' WHERE `tbl_users`.`user_id` = 2;
+
+UPDATE `expocad`.`tbl_users` SET `gender` = '1', `age` = '26', `housename` = 'House Name', `streetname` = 'Street Name', `city` = 'City', `state` = 'State', `pincode` = '123456' WHERE `tbl_users`.`user_id` = 3;
+
+UPDATE `expocad`.`tbl_users` SET `gender` = '1', `age` = '26', `housename` = 'House Name', `streetname` = 'Street Name', `city` = 'City', `state` = 'State', `pincode` = '123456' WHERE `tbl_users`.`user_id` = 4;
+
+CREATE TABLE `tbl_products` (
+ `pid` int(11) NOT NULL AUTO_INCREMENT,
+ `exid` int(11) NOT NULL,
+ `pname` varchar(1000) NOT NULL,
+ `description` varchar(1000) NOT NULL,
+ PRIMARY KEY (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1

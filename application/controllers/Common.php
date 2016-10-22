@@ -57,6 +57,7 @@ class Common extends CI_Controller
      */
     public function listmanager()
     {
+        $data['gender'] = $this->Common_model->getGender();
         $data['records'] = $this->Common_model->getManagers();
         $this->load->view('admin/list_manager',$data);
         $this->load->view('template/footer'); 
@@ -89,5 +90,19 @@ class Common extends CI_Controller
         $data['record'] = $this->Common_model->allbooth();
         $this->load->view('admin/allocate_booth',$data);
         $this->load->view('template/footer'); 
-    }  
+    } 
+
+    /**
+     * @
+     * date:22/10/2016
+     * Parameter:none
+     * Return type:none
+     * Description:function to get exhibitor list
+     */
+    public function approveexhibitor()
+    {
+        $data['records'] = $this->Common_model->getExhi();
+        $this->load->view('admin/list_exhibitor',$data);
+        $this->load->view('template/footer'); 
+    } 
 }

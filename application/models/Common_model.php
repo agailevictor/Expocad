@@ -68,6 +68,19 @@ class Common_model extends CI_Model
 
     /**
      * @
+     * date: 16/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get gender
+     */
+    public function getGender()
+    {
+        $query = "SELECT * FROM tbl_gender order by type";
+        return $this->db->query($query)->result();
+    }
+
+    /**
+     * @
      * date: 15/10/2016
      * Parameter:none
      * Return type:array
@@ -75,13 +88,8 @@ class Common_model extends CI_Model
      */
     public function getManagers()
     {
-        $where ='type = 2';
-        $this->db->select('*');
-        $this->db->from('tbl_users');
-        $this->db->where($where);
-        $query = $this->db->get();
-        $result = $query->result();
-        return $result;
+        $query = "SELECT a.user_id user_id,a.name name,a.user_name user_name,b.type gender,a.age age,a.housename housename,a.streetname streetname,a.city city,a.state state,a.pincode pincode, a.email email, a.mobile mobile FROM tbl_users a join tbl_gender b on a.gender = b.gender_id where a.type = 2";
+        return $this->db->query($query)->result();
     }   
 
     /**
@@ -121,5 +129,18 @@ class Common_model extends CI_Model
     {   
         $query = "SELECT * FROM tbl_users where type = 2 and user_id not in ( select mid from tbl_booth where is_all = 'y')";
         return $this->db->query($query)->result();
-    }                
+    } 
+
+    /**
+     * @
+     * date: 22/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get exhibitor list
+     */
+    public function getExhi()
+    {
+        $query = "SELECT a.user_id user_id,a.name name,a.user_name user_name,b.type gender,a.age age,a.housename housename,a.streetname streetname,a.city city,a.state state,a.pincode pincode, a.email email, a.mobile mobile FROM tbl_users a join tbl_gender b on a.gender = b.gender_id where a.type = 5";
+        return $this->db->query($query)->result();
+    }               
 }

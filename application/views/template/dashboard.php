@@ -45,26 +45,8 @@
                 <!-- START ROW -->
                 <div class="row">
 
-                    <!-- START Graph -->
-                    <div class="col-lg-5">
-                        <!-- START ROW "Graph" Header -->
-                        <div class="row m-b-2">
-                            <div class="col-md-5">
-                                <h4 class="m-b-0 f-w-300">Manager Vs Booth</h4></div>
-                                <div class="col-md-4 col-md-offset-4 text-right">
-                                </div>
-                            </div>
-                            <!-- END ROW "Graph" Header -->
-                            <div class="panel panel-default b-a-2 b-gray-dark no-bg">
-                                <div class="panel-body">
-                                    <div id="container1"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END Graph -->
-
                         <!-- START Calendar -->
-                        <div class="col-lg-7">
+                        <div class="col-lg-12">
                             <!-- START ROW "Calendar" Header -->
                             <div class="row m-b-2">
                                 <div class="col-md-4 col-sm-4 col-xs-6">
@@ -88,27 +70,8 @@
                     <div class="col-lg-12 m-t-2">
                         <!-- START ROW -->
                         <div class="row">
-
-                            <!-- START Graph -->
-                            <div class="col-lg-5">
-                                <!-- START ROW "Graph" Header -->
-                                <div class="row m-b-2">
-                                    <div class="col-md-5">
-                                        <h4 class="m-b-0 f-w-300">Staff Vs Booth</h4></div>
-                                        <div class="col-md-4 col-md-offset-4 text-right">
-                                        </div>
-                                    </div>
-                                    <!-- END ROW "Graph" Header -->
-                                    <div class="panel panel-default b-a-2 b-gray-dark no-bg">
-                                        <div class="panel-body">
-                                            <div id="container2"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END Graph -->
-
                                 <!-- START Calendar -->
-                                <div class="col-lg-7">
+                                <div class="col-lg-12">
                                     <!-- START ROW "Calendar" Header -->
                                     <div class="row m-b-2">
                                         <div class="col-md-4 col-sm-4 col-xs-6">
@@ -141,17 +104,17 @@
                     $(document).ready(function() {
                         var chk = <?php echo $_SESSION['user_type']; ?>;
                         cal();
-                        if(chk = 1)
-                        {
-                            graph_admin();
-                        }
-                        if(chk = 2)
-                        {
-                            graph_manager();
-                        }
-                        if (chk = 3)
-                        {
-                        }
+                        // if(chk = 1)
+                        // {
+                        //     graph_admin();
+                        // }
+                        // if(chk = 2)
+                        // {
+                        //     graph_manager();
+                        // }
+                        // if (chk = 3)
+                        // {
+                        // }
                     });
                 </script>
                 <script type="text/javascript">
