@@ -68,16 +68,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                       <?php $sno=1;
-                       foreach ($records as $records):?>
-                       <tr>
+                     <?php $sno=1;
+                     foreach ($records as $records):?>
+                     <tr>
                         <td class="text-white"><?php echo $sno; ?></td>                                                                      
                         <td class="text-white"><?php echo $records->bname; ?></td>
                         <td class="text-white"><?php echo $records->space; ?></td>
                         <td class="text-white"><?php echo $records->amount; ?></td>
                         <td class="text-center v-a-m">
                             <div class="btn-group" role="group" aria-label="...">
-                            <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-bId="<?php echo $records->bid; ?>" data-bname="<?php echo $records->bname; ?>" data-space="<?php echo $records->space; ?>" data-amount="<?php echo $records->amount; ?>"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-bId="<?php echo $records->bid; ?>" data-bname="<?php echo $records->bname; ?>" data-space="<?php echo $records->space; ?>" data-amount="<?php echo $records->amount; ?>"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>
                                 <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash">&nbsp;</span></a>
                             </div>
                         </td>                        
@@ -97,7 +97,7 @@
 <div class="modal fade" id="myModaladd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-           <div class="modal-header">
+         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <h4 class="modal-title" id="myModalLabel">Add New Booth</h4>
         </div>
@@ -105,7 +105,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-horizontal">
-                        <?php echo form_open('common/add_manager' , array('id' => 'add_booth'));?>
+                        <?php echo form_open('common/add_booth' , array('id' => 'add_booth'));?>
                         <div class="form-group">
                             <label for="project_name" class="col-sm-3 control-label">Booth Name</label>
                             <div class="col-sm-9">
@@ -146,7 +146,7 @@
 <div class="modal fade" id="myModaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
-           <div class="modal-header">
+         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <h4 class="modal-title" id="myModalLabel">Edit Booth Details</h4>
         </div>
@@ -159,7 +159,7 @@
                             <input type="hidden" id="bId" name="bId">
                             <label for="project_name" class="col-sm-3 control-label">Booth Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="strname" name="strname">
+                                <input type="text" class="form-control" id="strbname" name="strbname">
                                 <?php echo form_error('strbname'); ?>
                             </div>
                         </div>
@@ -202,37 +202,30 @@
 </script>
 <script>
     $(document).ready(function() {
-        jQuery.validator.addMethod("fullname", function (value, element) {
+        jQuery.validator.addMethod("alpha", function (value, element) {
             return this.optional(element) || /^[a-z\s]+$/i.test(value);
         }, "Only alphabetes allowed");
-        $("#validations").validate({
+        $("#add_booth1").validate({
             rules: {
-                strProjectName: {
-                    minlength: 2,
-                    required: true
+                strbnameA: {
+                    minlength: 6,
+                    maxlength: 15,
+                    required: true,
+                    alpha: true
                 },
-                dateFrom:{
-                    required: true
+                strspaceA:{
+                    required: true,
+                    number:true
                 },
-                dateTo:{
-                    required: true
+                stramountA:{
+                    required: true,
+                    number:true
                 }
+            },highlight: function(element) {
+                $(element).parent('div').addClass('has-error m-b-1');
             },
-            messages: {
-                strProjectName: {
-                    required: "Project Name required"
-                },
-                dateFrom: {
-                    required: "Project Start Date is Required  required"
-                },
-                dateTo: {
-                    required: "Project End Date is required"
-                }
-            },
-            errorElement: "span",
-            errorPlacement: function(error, element) {
-                error.appendTo(element.parent());
-                jQuery(element.parent()).addClass('has-error m-b-1');
+            unhighlight: function(element) {
+                $(element).parent('div').removeClass('has-error m-b-1');
             }
 
         });

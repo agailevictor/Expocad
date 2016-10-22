@@ -62,7 +62,7 @@ class Common_model extends CI_Model
 
     public function get_sub($id)
     {
-        $query = "SELECT a.m_id,a.u_type,b.s_menu,b.url,b.sub_id FROM tbl_menu a join tbl_submenu b on a.m_id = b.pid where a.u_type=". $id." ORDER BY a.sequence";
+        $query = "SELECT a.m_id,a.u_type,b.s_menu,b.url,b.sub_id FROM tbl_menu a join tbl_submenu b on a.m_id = b.pid where a.u_type=". $id." ORDER BY a.sequence, b.s_menu";
         return $this->db->query($query)->result();
     } 
 
@@ -142,5 +142,18 @@ class Common_model extends CI_Model
     {
         $query = "SELECT a.user_id user_id,a.name name,a.user_name user_name,b.type gender,a.age age,a.housename housename,a.streetname streetname,a.city city,a.state state,a.pincode pincode, a.email email, a.mobile mobile FROM tbl_users a join tbl_gender b on a.gender = b.gender_id where a.type = 5";
         return $this->db->query($query)->result();
-    }               
+    }
+
+    /**
+     * @
+     * date: 22/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get sponsor list
+     */
+    public function getspo()
+    {
+        $query = "SELECT * from tbl_sponsor where sp_status = 1";
+        return $this->db->query($query)->result();
+    }                
 }

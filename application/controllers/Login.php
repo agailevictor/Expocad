@@ -9,6 +9,7 @@ class Login extends CI_Controller
         parent::__construct();
         $this->load->library('session');
         $this->load->model('common_model');
+        $this->load->library('form_validation');        
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         date_default_timezone_set('Asia/Calcutta'); // to set the time zone
     }

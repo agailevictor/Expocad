@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="col-md-8 sub-navbar-column">
                         <div class="sub-navbar-header">
-                            <h3>List Manager</h3>
+                            <h3>List Sponsor</h3>
                         </div>
                         <ol class="breadcrumb navbar-text navbar-right no-bg">
                             <li class="current-parent">
@@ -40,12 +40,12 @@
                             <li class="active">
                                 Master
                             </li>
-                            <li class="active">List Manager(s)</li>
+                            <li class="active">List Sponsor(s)</li>
                         </ol>
                     </div>
                     <div class="col-md-4">
                         <a class="btn btn-primary pull-right" style="margin-top: 20px;" href="" data-toggle="modal" data-target="#myModaladd" class="modaladd">
-                            Add Manager
+                            Add Sponsor
                         </a>
                     </div>                    
                 </div>
@@ -62,8 +62,6 @@
                         <tr>
                             <th  style="font-weight: 600; color: #2c97de">No</th>
                             <th  style="font-weight: 600; color: #2c97de">Name</th>
-                            <th  style="font-weight: 600; color: #2c97de">Username</th>
-                            <th  style="font-weight: 600; color: #2c97de">Gender</th>
                             <th  style="font-weight: 600; color: #2c97de">Age</th>
                             <th  style="font-weight: 600; color: #2c97de">House Name</th>
                             <th  style="font-weight: 600; color: #2c97de">Street Name</th>
@@ -80,20 +78,18 @@
                        foreach ($records as $records):?>
                        <tr>
                         <td class="text-white"><?php echo $sno; ?></td>
-                        <td class="text-white"><?php echo $records->name; ?></td>
-                        <td class="text-white"><?php echo $records->user_name; ?></td>
-                        <td class="text-white"><?php echo $records->gender; ?></td>
-                        <td class="text-white"><?php echo $records->age; ?></td>
-                        <td class="text-white"><?php echo $records->housename; ?></td>
-                        <td class="text-white"><?php echo $records->streetname; ?></td>
-                        <td class="text-white"><?php echo $records->city; ?></td>                         
-                        <td class="text-white"><?php echo $records->state; ?></td>
-                        <td class="text-white"><?php echo $records->pincode; ?></td>                                                 
-                        <td class="text-white"><?php echo $records->email; ?></td>
-                        <td class="text-white"><?php echo $records->mobile; ?></td>
+                        <td class="text-white"><?php echo $records->sp_name; ?></td>
+                        <td class="text-white"><?php echo $records->sp_age; ?></td>
+                        <td class="text-white"><?php echo $records->sp_hname; ?></td>
+                        <td class="text-white"><?php echo $records->sp_street; ?></td>
+                        <td class="text-white"><?php echo $records->sp_city; ?></td>                         
+                        <td class="text-white"><?php echo $records->sp_state; ?></td>
+                        <td class="text-white"><?php echo $records->sp_pin; ?></td>                                                 
+                        <td class="text-white"><?php echo $records->sp_email; ?></td>
+                        <td class="text-white"><?php echo $records->sp_phone; ?></td>
                         <td class="text-center v-a-m">
                             <div class="btn-group" role="group" aria-label="...">
-                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-userId="<?php echo $records->user_id; ?>" data-Name="<?php echo $records->name; ?>" data-Username="<?php echo $records->user_name  ; ?>" data-gender="<?php echo $records->gender ; ?>" data-age="<?php echo $records->age ; ?>" data-hname="<?php echo $records->housename ; ?>" data-sname="<?php echo $records->streetname ; ?>" data-city="<?php echo $records->city ; ?>" data-state="<?php echo $records->state ; ?>" data-pincode="<?php echo $records->pincode ; ?>" data-email="<?php echo $records->email ; ?>" data-mobile="<?php echo $records->mobile ; ?>"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-userId="<?php echo $records->sp_id; ?>" data-Name="<?php echo $records->sp_name; ?>" data-age="<?php echo $records->sp_age ; ?>" data-hname="<?php echo $records->sp_hname ; ?>" data-sname="<?php echo $records->sp_street; ?>" data-city="<?php echo $records->sp_city ; ?>" data-state="<?php echo $records->sp_state ; ?>" data-pincode="<?php echo $records->sp_pin ; ?>" data-email="<?php echo $records->sp_email ; ?>" data-mobile="<?php echo $records->sp_phone ; ?>"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>
                                 <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash">&nbsp;</span></a>
                             </div>
                         </td>                        
@@ -115,13 +111,13 @@
         <div class="modal-content">
            <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add New Manager</h4>
+            <h4 class="modal-title" id="myModalLabel">Add New Sponsor</h4>
         </div>
         <div class="modal-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-horizontal">
-                        <?php echo form_open('common/add_manager' , array('id' => 'add_manager'));?>
+                        <?php echo form_open('common/add_manager' , array('id' => 'add_sponsor'));?>
                         <div class="form-group">
                             <label for="project_name" class="col-sm-3 control-label">Name</label>
                             <div class="col-sm-9">
@@ -129,26 +125,6 @@
                                 <?php echo form_error('strnameA'); ?>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="project_name" class="col-sm-3 control-label">Username</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="strusernameA" name="strusernameA">
-                                <?php echo form_error('strusrnameA'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="from_datepicker" class="col-sm-3 control-label">Gender</label>
-                            <div class="col-sm-9">
-                                <select name="strgenderA" class="form-control" id="strgenderA">
-                                    <option value=""> --- Select --- </option>
-                                    <?php
-                                    foreach ($gender as $gender):?>
-                                    <option value="<?php echo $gender->gender_id; ?>"><?php echo $gender->type; ?> </option>
-                                <?php  endforeach;?>
-                            </select>
-                            <?php echo form_error('strgenderA'); ?>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="from_datepicker" class="col-sm-3 control-label">Age</label>
                         <div class="col-sm-9">
@@ -199,7 +175,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="to_datepicker" class="col-sm-3 control-label">Mobile</label>
+                        <label for="to_datepicker" class="col-sm-3 control-label">Phone</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control"  id="strmobileA" name="strmobileA">
                             <?php echo form_error('strmobileA'); ?>
@@ -226,33 +202,19 @@
         <div class="modal-content">
            <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Edit Manager Details</h4>
+            <h4 class="modal-title" id="myModalLabel">Edit Sponsor Details</h4>
         </div>
         <div class="modal-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-horizontal">
-                        <?php echo form_open('common/update_manager' , array('id' => 'up_manager'));?>
+                        <?php echo form_open('common/update_manager' , array('id' => 'up_sponsor'));?>
                         <div class="form-group">
                             <input type="hidden" id="userId" name="userId">
                             <label for="project_name" class="col-sm-3 control-label">Name</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="strname" name="strname">
                                 <?php echo form_error('strname'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="project_name" class="col-sm-3 control-label">Username</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="strusername" name="strusername">
-                                <?php echo form_error('strusrname'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="from_datepicker" class="col-sm-3 control-label">Gender</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="strgender" name="strgender">
-                                <?php echo form_error('strgender'); ?>
                             </div>
                         </div>
                         <div class="form-group">
@@ -332,25 +294,18 @@
     $('div.dataTables_filter input').attr('placeholder', 'Enter the text here');
 </script>
 <script>
-    $("#idManager").addClass("active open");
+    $("#idSponsor").addClass("active open");
 </script>
 <script>
     $(document).ready(function() {
         jQuery.validator.addMethod("alpha", function (value, element) {
             return this.optional(element) || /^[a-z\s]+$/i.test(value);
         }, "Only alphabetes allowed");
-        $("#add_manager").validate({
+        $("#add_sponsor").validate({
             rules: {
                 strnameA: {
                     minlength: 2,
                     alpha : true,
-                    required: true
-                },
-                strusernameA:{
-                    minlength : 2,
-                    required: true
-                },
-                strgenderA:{
                     required: true
                 },
                 strageA:{
@@ -400,18 +355,11 @@
         }
     });
 
-        $("#up_manager").validate({
+        $("#up_sponsor").validate({
             rules: {
                 strname: {
                     minlength: 2,
                     alpha : true,
-                    required: true
-                },
-                strusername:{
-                    minlength : 2,
-                    required: true
-                },
-                strgender:{
                     required: true
                 },
                 strage:{

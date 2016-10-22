@@ -14,6 +14,8 @@ class Common extends CI_Controller
         $datamn['menu'] = $this->Common_model->get_menu($user_type);
         $datamn['menu_sub'] = $this->Common_model->get_sub($user_type);
         $this->load->view('template/frame',$datamn);
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div class="error" style="color: #D8000C">', '</div>');        
         date_default_timezone_set('Asia/Calcutta'); // to set the time zone
     }
 
@@ -104,5 +106,35 @@ class Common extends CI_Controller
         $data['records'] = $this->Common_model->getExhi();
         $this->load->view('admin/list_exhibitor',$data);
         $this->load->view('template/footer'); 
-    } 
+    }
+
+    /**
+     * @
+     * date:22/10/2016
+     * Parameter:none
+     * Return type:none
+     * Description:function to get sponsor list
+     */
+    public function list_sponsor()
+    {
+        $data['records'] = $this->Common_model->getspo();
+        $this->load->view('admin/list_spo',$data);
+        $this->load->view('template/footer'); 
+    }  
+
+    /**
+     * @
+     * date:22/10/2016
+     * Parameter:none
+     * Return type:none
+     * Description:function to add new booth
+     */
+    public function add_booth()
+    {
+        $this->form_validation->set_rules('strbnameA', 'Booth Name', 'trim|required|min_length[6]|max_length[15]');
+        $this->form_validation->set_rules('strspaceA', 'Space', 'trim|required|numeric');
+        $this->form_validation->set_rules('stramountA', 'Amount', 'trim|required|numeric');
+        if ($this->form_validation->run() == TRUE) {
+        }
+    }
 }
