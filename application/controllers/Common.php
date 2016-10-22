@@ -135,6 +135,15 @@ class Common extends CI_Controller
         $this->form_validation->set_rules('strspaceA', 'Space', 'trim|required|numeric');
         $this->form_validation->set_rules('stramountA', 'Amount', 'trim|required|numeric');
         if ($this->form_validation->run() == TRUE) {
+            $data = array('bname' =>$this->input->post("strbnameA"),'space' =>$this->input->post("strspaceA"),'amount' => $this->input->post("stramountA"),'is_all' => 'N');
+            $result = $this->Common_model->add_booth($data);
+            if($result==true){
+                $this->session->set_flashdata('success', 'Booth '. $this->input->post("strbnameA") . ' successfully added ');
+                redirect('common/listbooth', 'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Booth not added.');
+                redirect('common/listbooth', 'refresh');
+            }
         }
     }
 }

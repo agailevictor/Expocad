@@ -155,5 +155,18 @@ class Common_model extends CI_Model
     {
         $query = "SELECT * from tbl_sponsor where sp_status = 1";
         return $this->db->query($query)->result();
-    }                
+    } 
+
+    /**
+     * @
+     * date: 22/10/2016
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to add new booth
+     */
+    public function add_booth($data)
+    {
+        $this->db->insert('tbl_booth', $data);
+        return true;
+    }              
 }

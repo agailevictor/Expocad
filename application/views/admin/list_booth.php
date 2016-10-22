@@ -205,13 +205,12 @@
         jQuery.validator.addMethod("alpha", function (value, element) {
             return this.optional(element) || /^[a-z\s]+$/i.test(value);
         }, "Only alphabetes allowed");
-        $("#add_booth1").validate({
+        $("#add_booth").validate({
             rules: {
                 strbnameA: {
                     minlength: 6,
                     maxlength: 15,
-                    required: true,
-                    alpha: true
+                    required: true
                 },
                 strspaceA:{
                     required: true,
@@ -244,7 +243,7 @@
             var space = $(this).attr("data-space");
             var amount = $(this).attr("data-amount");         
             $('#bId').val(bid);
-            $('#strname').val(bname) ;
+            $('#strbname').val(bname) ;
             $('#strspace').val(space);
             $('#stramount').val(amount) ;        
         });
