@@ -30,3 +30,12 @@ CREATE TABLE `tbl_products` (
  `description` varchar(1000) NOT NULL,
  PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+INSERT INTO `expocad`.`tbl_submenu` (`sid`, `s_menu`, `url`, `sub_id`, `pid`, `status`) VALUES (NULL, 'Sponsor', 'Common/list_sponsor', 'idSponsor', '1', '1');
+
+UPDATE `expocad`.`tbl_menu` SET `sequence` = '3' WHERE `tbl_menu`.`m_id` =5;
+UPDATE `expocad`.`tbl_menu` SET `sequence` = '4' WHERE `tbl_menu`.`m_id` =6;
+
+INSERT INTO `expocad`.`tbl_menu` (`m_id`, `menu`, `icon`, `menu_id`, `sequence`, `u_type`, `status`) VALUES (NULL, 'Arrange', 'fa fa-th fa-fw fa-lg', 'idArrange', '2', '2', '1');
+
+INSERT INTO `expocad`.`tbl_submenu` (`sid`, `s_menu`, `url`, `sub_id`, `pid`, `status`) VALUES (NULL, 'Staff', 'Common/allocate_staff', 'idAstaff', '7', '1');
