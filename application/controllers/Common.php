@@ -89,22 +89,5 @@ class Common extends CI_Controller
         $data['record'] = $this->Common_model->allbooth();
         $this->load->view('admin/allocate_booth',$data);
         $this->load->view('template/footer'); 
-    } 
-
-    /**
-     * @
-     * date:16/10/2016
-     * Parameter:none
-     * Return type:none
-     * Description:function to populate highcharts
-     */
-    public function highchart()
-    {
-        $data = array();
-        $result = array();
-        $result = $this->Common_model->highchart();       
-        $data['data'] = $result;
-        //$data['status'] = "success";
-        echo json_encode($data); 
-    } 
+    }  
 }

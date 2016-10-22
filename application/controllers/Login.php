@@ -35,8 +35,7 @@ class Login extends CI_Controller
     public function check()
     {
         $logged_in = $this->session->userdata('loggedin');
-        echo $logged_in;
-        if ($logged_in == 'true') {
+        if ($logged_in == '1') {
             redirect(base_url('common'), 'refresh');
         } else {
             $this->load->view('login/login');
