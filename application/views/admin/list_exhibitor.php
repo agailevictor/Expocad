@@ -76,9 +76,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                       <?php $sno=1;
-                       foreach ($records as $records):?>
-                       <tr>
+                     <?php $sno=1;
+                     foreach ($records as $records):?>
+                     <tr>
                         <td class="text-white"><?php echo $sno; ?></td>
                         <td class="text-white"><?php echo $records->name; ?></td>
                         <td class="text-white"><?php echo $records->user_name; ?></td>
@@ -111,7 +111,12 @@
 </div>
 
 <script>
-    $("#datatables-example").DataTable();
+$("#datatables-example").DataTable({
+    dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+});
     $('div.dataTables_filter input').attr('placeholder', 'Enter the text here');
 </script>
 <script>
@@ -119,74 +124,40 @@
 </script>
 <script>
     $(document).ready(function() {
-        jQuery.validator.addMethod("fullname", function (value, element) {
-            return this.optional(element) || /^[a-z\s]+$/i.test(value);
-        }, "Only alphabetes allowed");
-        $("#validations").validate({
-            rules: {
-                strProjectName: {
-                    minlength: 2,
-                    required: true
-                },
-                dateFrom:{
-                    required: true
-                },
-                dateTo:{
-                    required: true
-                }
-            },
-            messages: {
-                strProjectName: {
-                    required: "Project Name required"
-                },
-                dateFrom: {
-                    required: "Project Start Date is Required  required"
-                },
-                dateTo: {
-                    required: "Project End Date is required"
-                }
-            },
-            errorElement: "span",
-            errorPlacement: function(error, element) {
-                error.appendTo(element.parent());
-                jQuery(element.parent()).addClass('has-error m-b-1'); // to show error on element also
-            }
-
-        });
-        $(".modaldelete").click(function(){
-            if(confirm("Do you want to delete?"))
-            {
-                var id = $(this).attr("data-journalId");
-                $.post( "<?php echo base_url(); ?>journal/delete_journal",{id:id}, function( data ) {
-                    location.reload();
-                });
-            }
-        });
-        $(".modaledit").click(function(){
-            var Id = $(this).attr("data-userId");            
-            var Name = $(this).attr("data-Name");
-            var Username = $(this).attr("data-username");
-            var Gender = $(this).attr("data-gender");
-            var Age = $(this).attr("data-age");
-            var Hname = $(this).attr("data-hname");
-            var Sname = $(this).attr("data-sname");
-            var City = $(this).attr("data-city");
-            var State = $(this).attr("data-state");
-            var Pincode = $(this).attr("data-pincode");
-            var Email = $(this).attr("data-email");
-            var Mobile = $(this).attr("data-mobile");           
-            $('#userId').val(Id);
-            $('#strname').val(Name) ;
-            $('#strusername').val(Username );
-            $('#strgender').val(Gender);
-            $('#strage').val(Age);
-            $('#strhname').val(Hname );
-            $('#strsname').val(Sname );
-            $('#strcity').val(City );
-            $('#strstate').val(State );
-            $('#strpinc').val(Pincode );
-            $('#stremail').val(Email) ;
-            $('#strmobile').val(Mobile);         
-        });
+     $(".modaldelete").click(function(){
+        if(confirm("Do you want to delete?"))
+        {
+            var id = $(this).attr("data-journalId");
+            $.post( "<?php echo base_url(); ?>journal/delete_journal",{id:id}, function( data ) {
+                location.reload();
+            });
+        }
     });
+     $(".modaledit").click(function(){
+        var Id = $(this).attr("data-userId");            
+        var Name = $(this).attr("data-Name");
+        var Username = $(this).attr("data-username");
+        var Gender = $(this).attr("data-gender");
+        var Age = $(this).attr("data-age");
+        var Hname = $(this).attr("data-hname");
+        var Sname = $(this).attr("data-sname");
+        var City = $(this).attr("data-city");
+        var State = $(this).attr("data-state");
+        var Pincode = $(this).attr("data-pincode");
+        var Email = $(this).attr("data-email");
+        var Mobile = $(this).attr("data-mobile");           
+        $('#userId').val(Id);
+        $('#strname').val(Name) ;
+        $('#strusername').val(Username );
+        $('#strgender').val(Gender);
+        $('#strage').val(Age);
+        $('#strhname').val(Hname );
+        $('#strsname').val(Sname );
+        $('#strcity').val(City );
+        $('#strstate').val(State );
+        $('#strpinc').val(Pincode );
+        $('#stremail').val(Email) ;
+        $('#strmobile').val(Mobile);         
+    });
+ });
 </script>

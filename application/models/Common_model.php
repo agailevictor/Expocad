@@ -19,6 +19,7 @@ class Common_model extends CI_Model
      */
     public function validate_login($username, $password)
     {
+        $this->db->where('status', 1);
         $this->db->where('user_name', $username);
         $this->db->where('PASSWORD', base64_encode($password));	
         $query = $this->db->get('tbl_users');
@@ -140,7 +141,7 @@ class Common_model extends CI_Model
      */
     public function getExhi()
     {
-        $query = "SELECT a.user_id user_id,a.name name,a.user_name user_name,b.type gender,a.age age,a.housename housename,a.streetname streetname,a.city city,a.state state,a.pincode pincode, a.email email, a.mobile mobile FROM tbl_users a join tbl_gender b on a.gender = b.gender_id where a.type = 5";
+        $query = "SELECT a.user_id user_id,a.name name,a.user_name user_name,b.type gender,a.age age,a.housename housename,a.streetname streetname,a.city city,a.state state,a.pincode pincode, a.email email, a.mobile mobile FROM tbl_users a join tbl_gender b on a.gender = b.gender_id where a.type = 5 and a.status = 2";
         return $this->db->query($query)->result();
     }
 
