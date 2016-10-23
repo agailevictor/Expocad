@@ -237,6 +237,40 @@
                 });
             }
         });
+
+        $("#up_booth").validate({
+            rules: {
+                strbname: {
+                    minlength: 6,
+                    maxlength: 15,
+                    required: true
+                },
+                strspace:{
+                    required: true,
+                    number:true
+                },
+                stramount:{
+                    required: true,
+                    number:true
+                }
+            },highlight: function(element) {
+                $(element).parent('div').addClass('has-error m-b-1');
+            },
+            unhighlight: function(element) {
+                $(element).parent('div').removeClass('has-error m-b-1');
+            }
+
+        });
+        $(".modaldelete").click(function(){
+            if(confirm("Do you want to delete?"))
+            {
+                var id = $(this).attr("data-journalId");
+                $.post( "<?php echo base_url(); ?>journal/delete_journal",{id:id}, function( data ) {
+                    location.reload();
+                });
+            }
+        });
+
         $(".modaledit").click(function(){
             var bid = $(this).attr("data-bId");            
             var bname = $(this).attr("data-bname");

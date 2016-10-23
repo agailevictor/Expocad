@@ -339,200 +339,22 @@
             <!-- END Notification -->
 
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-                    <i class="fa fa-lg fa-fw fa-envelope hidden-xs"></i>
-                    <span class="hidden-sm hidden-md hidden-lg">Messages <span class="badge badge-info m-l-1">3</span></span>
-                    <span class="label label-info label-pill label-with-icon hidden-xs">3</span>
-                    <span class="fa fa-fw fa-angle-down hidden-lg hidden-md hidden-sm"></span>
+                <a class="dropdown-toggle user-dropdown" data-toggle="dropdown" href="#" role="button">
+                    <span class="m-r-1"><?php echo $this->session->userdata('name') ?></span>
+
+                    <div class="avatar avatar-image avatar-sm avatar-inline">
+                        <img alt="User" src="<?php echo base_url(); ?>assets/uifaces/user/user.jpg">
+                    </div>
                 </a>
-
-                <!-- START Messages Dropdown Menu -->
-                <ul class="dropdown-menu dropdown-menu-right p-t-0 b-t-0 p-b-0 b-b-0 b-a-0">
+                <ul class="dropdown-menu">
                     <li>
-                        <div class="yamm-content p-t-0 p-r-0 p-l-0 p-b-0">
-                            <ul class="list-group m-b-0">
-                                <li class="list-group-item b-r-0 b-l-0 b-r-0 b-t-r-0 b-t-l-0 b-b-2 w-350">
-                                    <small class="text-uppercase">
-                                        <strong>Messages</strong>
-                                    </small>
-                                    <a role="button" href="#"
-                                    class="btn m-t-0 btn-xs btn-default pull-right">
-                                    <i class="fa fa-pencil"></i>
-                                </a>
-                            </li>
-
-                            <!-- START Scroll Inside Panel -->
-                            <li class="list-group-item b-a-0 p-x-0 p-y-0 b-t-0">
-                                <div class="scroll-200 custom-scrollbar">
-
-                                    <a href="#"
-                                    class="list-group-item b-r-0 b-t-0 b-l-0">
-                                    <div class="media">
-                                        <div class="media-left media-middle">
-                                            <div class="avatar">
-                                                <img class="media-object img-circle"
-                                                src="<?php echo base_url(); ?>assets/uifaces/faces/twitter/jomarmen/128.jpg"
-                                                alt="Avatar">
-                                                <i class="avatar-status avatar-status-bottom bg-danger b-gray-darker"></i>
-                                            </div>
-                                        </div>
-                                        <div class="media-body media-auto">
-                                            <h5 class="m-b-0 m-t-0">
-                                                <span>Marshall McDermott</span>
-                                                <small><span>02:36</span></small>
-                                            </h5>
-                                            <p class="m-t-0 m-b-0">
-                                                <span>Cumque eos quaerat nihil molestiae sapiente.</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="list-group-item b-r-0 b-l-0">
-                                    <div class="media">
-                                        <div class="media-left media-middle">
-                                            <div class="avatar">
-                                                <img class="media-object img-circle"
-                                                src="<?php echo base_url(); ?>assets/uifaces/faces/twitter/mrxloka/128.jpg"
-                                                alt="Avatar">
-                                                <i class="avatar-status avatar-status-bottom bg-warning b-gray-darker"></i>
-                                            </div>
-                                        </div>
-                                        <div class="media-body media-auto">
-                                            <h5 class="m-b-0 m-t-0">
-                                                <span>Merritt Powlowski</span>
-                                                <small><span>04:47</span></small>
-                                            </h5>
-                                            <p class="m-t-0 m-b-0">
-                                                <span>Nesciunt et consequatur aut.</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="list-group-item b-r-0 b-l-0">
-                                    <div class="media">
-                                        <div class="media-left media-middle">
-                                            <div class="avatar">
-                                                <img class="media-object img-circle"
-                                                src="<?php echo base_url(); ?>assets/uifaces/faces/twitter/soyjavi/128.jpg"
-                                                alt="Avatar">
-                                                <i class="avatar-status avatar-status-bottom bg-success b-gray-darker"></i>
-                                            </div>
-                                        </div>
-                                        <div class="media-body media-auto">
-                                            <h5 class="m-b-0 m-t-0">
-                                                <span>Reba Price</span>
-                                                <small><span>07:58</span></small>
-                                            </h5>
-                                            <p class="m-t-0 m-b-0">
-                                                <span>Quam delectus ut sed soluta ut tempora doloribus est.</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="list-group-item b-r-0 b-l-0">
-                                    <div class="media">
-                                        <div class="media-left media-middle">
-                                            <div class="avatar">
-                                                <img class="media-object img-circle"
-                                                src="<?php echo base_url(); ?>assets/uifaces/faces/twitter/ajaxy_ru/128.jpg"
-                                                alt="Avatar">
-                                                <i class="avatar-status avatar-status-bottom bg-danger b-gray-darker"></i>
-                                            </div>
-                                        </div>
-                                        <div class="media-body media-auto">
-                                            <h5 class="m-b-0 m-t-0">
-                                                <span>Harold Kling</span>
-                                                <small><span>09:28</span></small>
-                                            </h5>
-                                            <p class="m-t-0 m-b-0">
-                                                <span>Quasi recusandae et nam earum qui assumenda rerum aliquid quod.</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="list-group-item b-r-0 b-l-0">
-                                    <div class="media">
-                                        <div class="media-left media-middle">
-                                            <div class="avatar">
-                                                <img class="media-object img-circle"
-                                                src="<?php echo base_url(); ?>assets/uifaces/faces/twitter/netonet_il/128.jpg"
-                                                alt="Avatar">
-                                                <i class="avatar-status avatar-status-bottom bg-warning b-gray-darker"></i>
-                                            </div>
-                                        </div>
-                                        <div class="media-body media-auto">
-                                            <h5 class="m-b-0 m-t-0">
-                                                <span>Antonette Borer</span>
-                                                <small><span>12:31</span></small>
-                                            </h5>
-                                            <p class="m-t-0 m-b-0">
-                                                <span>Suscipit qui nemo reiciendis sed architecto explicabo.</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="list-group-item b-r-0 b-l-0">
-                                    <div class="media">
-                                        <div class="media-left media-middle">
-                                            <div class="avatar">
-                                                <img class="media-object img-circle"
-                                                src="<?php echo base_url(); ?>assets/uifaces/faces/twitter/homka/128.jpg"
-                                                alt="Avatar">
-                                                <i class="avatar-status avatar-status-bottom bg-success b-gray-darker"></i>
-                                            </div>
-                                        </div>
-                                        <div class="media-body media-auto">
-                                            <h5 class="m-b-0 m-t-0">
-                                                <span>Derrick Muller</span>
-                                                <small><span>07:39</span></small>
-                                            </h5>
-                                            <p class="m-t-0 m-b-0">
-                                                <span>Rerum optio consequatur ex fuga et aut vitae ipsa commodi.</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                            </div>
-                        </li>
-                        <!-- END Scroll Inside Panel -->
-
-                        <li class="list-group-item b-a-0 p-x-0 b-b-0 p-y-0 r-a-0">
-                            <a class="list-group-item text-center b-b-0 b-r-0 b-l-0 b-r-b-r-0 b-r-b-l-0"
-                            href="#">
-                            See All Messages <i class="fa fa-angle-right"></i>
-                        </a>
+                        <a href="<?php echo base_url('login/logout') ?>">Sign Out</a>
                     </li>
                 </ul>
-            </div>
-        </li>
-    </ul>
-    <!-- END Messages Dropdown Menu -->
-
-</li>
-
-<li class="dropdown">
-    <a class="dropdown-toggle user-dropdown" data-toggle="dropdown" href="#" role="button">
-        <span class="m-r-1"><?php echo $this->session->userdata('name') ?></span>
-
-        <div class="avatar avatar-image avatar-sm avatar-inline">
-            <img alt="User" src="<?php echo base_url(); ?>assets/uifaces/user/user.jpg">
-        </div>
-    </a>
-    <ul class="dropdown-menu">
-        <li>
-            <a href="<?php echo base_url('login/logout') ?>">Sign Out</a>
-        </li>
-    </ul>
-</li>
-</ul>
-<!-- END Right Side Navbar -->
-</div>
+            </li>
+        </ul>
+        <!-- END Right Side Navbar -->
+    </div>
 
 </div>
 </div>

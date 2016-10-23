@@ -37,7 +37,7 @@ class Login extends CI_Controller
     {
         $logged_in = $this->session->userdata('loggedin');
         if ($logged_in == '1') {
-            redirect(base_url('common'), 'refresh');
+            redirect(base_url('common/dash'), 'refresh');
         } else {
             $this->load->view('login/login');
         }
