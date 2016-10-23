@@ -27,8 +27,9 @@ class Manager extends CI_Controller
      */
     public function staff()
     {
+        $id = $this->session->userdata('user_id');
         $data['gender'] = $this->Common_model->getGender();
-        $data['records'] = $this->Manager_model->getStaffs();
+        $data['records'] = $this->Manager_model->getStaffs($id);
         $this->load->view('manager/list_staff', $data);
         $this->load->view('template/footer');
     }
@@ -42,9 +43,41 @@ class Manager extends CI_Controller
      */
     public function listbooth()
     {
-        $data['records'] = $this->Manager_model->getbooths();
+        $id = $this->session->userdata('user_id');
+        $data['records'] = $this->Manager_model->getbooths_under($id);
         $this->load->view('manager/list_booth',$data);
         $this->load->view('template/footer');
     }
+
+    /**
+     * @
+     * date:23/10/2016
+     * Parameter:none
+     * Return type:none
+     * Description:function to load booth list and allocate staff
+     */
+    public function allocate_staff()
+    {
+        $id = $this->session->userdata('user_id');
+        $data['staffs'] = $this->Manager_model->getstaffs_under($id);        
+        $data['records'] = $this->Manager_model->getbooths_under($id);
+        $this->load->view('manager/alloc_booth',$data);
+        $this->load->view('template/footer');
+    }
+
+    /**
+     * @
+     * date:23/10/2016
+     * Parameter:none
+     * Return type:none
+     * Description:function to load the request for booth
+     */
+    public function request()
+    {
+        $id = $this->session->userdata('user_id');
+        $data['records'] = $this->Manager_model->get_approvebooth($id);
+        $this->load->view('manager/list_appbooth',$data);
+        $this->load->view('template/footer');
+    }     
 
 }

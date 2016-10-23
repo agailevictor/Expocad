@@ -16,3 +16,5 @@ UPDATE `expocad`.`tbl_submenu` SET `url` = 'Common/get_approvebooth' WHERE `tbl_
 
 INSERT INTO `expocad`.`tbl_users` (`user_id`, `user_name`, `password`, `name`, `gender`, `age`, `housename`, `streetname`, `city`, `state`, `pincode`, `email`, `mobile`, `type`, 
 `parent_id`, `status`) VALUES (NULL, 'staff1', 'ZGVtbw==', 'Staff 1', '1', '25', 'Staff House Name', 'Staff Street Name', 'Staff City', 'Staff State', '123456', 'staff1@expocad.com', '4444444444', '3', '3', '1');
+
+UPDATE `expocad`.`tbl_submenu` SET `url` = 'Manager/request' WHERE `tbl_submenu`.`sid` =7;

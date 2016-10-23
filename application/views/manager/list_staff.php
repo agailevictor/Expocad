@@ -336,40 +336,132 @@
 </script>
 <script>
     $(document).ready(function() {
-        jQuery.validator.addMethod("fullname", function (value, element) {
+        jQuery.validator.addMethod("alpha", function (value, element) {
             return this.optional(element) || /^[a-z\s]+$/i.test(value);
         }, "Only alphabetes allowed");
-        $("#validations").validate({
+        $("#add_staff").validate({
             rules: {
-                strProjectName: {
+                strnameA: {
                     minlength: 2,
+                    alpha : true,
                     required: true
                 },
-                dateFrom:{
+                strusernameA:{
+                    minlength : 2,
                     required: true
                 },
-                dateTo:{
+                strgenderA:{
                     required: true
-                }
+                },
+                strageA:{
+                    digits: true,
+                    required: true
+                },
+                strhnameA:{
+                    maxlength: 20,
+                    alpha: true,
+                    required: true,
+                },
+                strsnameA:{
+                    required: true,
+                    alpha: true,
+                    maxlength:20
+                },
+                strcityA:{
+                 maxlength:20,
+                 alpha: true,
+                 required: true 
+             },
+             strstateA:{
+                maxlength:20,
+                alpha: true,
+                required: true
             },
-            messages: {
-                strProjectName: {
-                    required: "Project Name required"
-                },
-                dateFrom: {
-                    required: "Project Start Date is Required  required"
-                },
-                dateTo: {
-                    required: "Project End Date is required"
-                }
+            strpincA:{
+                digits: true,
+                maxlength: 6,
+                required: true
             },
-            errorElement: "span",
-            errorPlacement: function(error, element) {
-                error.appendTo(element.parent());
-                jQuery(element.parent()).addClass('has-error m-b-1'); // to show error on element also
+            stremailA:{
+                email: true,
+                required: true
+            },
+            strmobileA:{
+                required: true,
+                digits: true,
+                maxlength: 10
             }
 
-        });
+        },highlight: function(element) {
+            $(element).parent('div').addClass('has-error m-b-1');
+        },
+        unhighlight: function(element) {
+            $(element).parent('div').removeClass('has-error m-b-1');
+        }
+    });
+
+        $("#update_staff").validate({
+            rules: {
+                strname: {
+                    minlength: 2,
+                    alpha : true,
+                    required: true
+                },
+                strusername:{
+                    minlength : 2,
+                    required: true
+                },
+                strgender:{
+                    required: true
+                },
+                strage:{
+                    digits: true,
+                    required: true
+                },
+                strhname:{
+                    maxlength: 20,
+                    alpha: true,
+                    required: true,
+                },
+                strsname:{
+                    required: true,
+                    alpha: true,
+                    maxlength:20
+                },
+                strcity:{
+                   maxlength:20,
+                   alpha: true,
+                   required: true 
+               },
+               strstate:{
+                maxlength:20,
+                alpha: true,
+                required: true
+            },
+            strpinc:{
+                digits: true,
+                maxlength: 6,
+                required: true
+            },
+            stremail:{
+                email: true,
+                required: true
+            },
+            strmobile:{
+                required: true,
+                digits: true,
+                maxlength: 10
+            }
+
+        },highlight: function(element) {
+            $(element).parent('div').addClass('has-error m-b-1');
+        },
+        unhighlight: function(element) {
+            $(element).parent('div').removeClass('has-error m-b-1');
+        }
+    });
+
+
         $(".modaldelete").click(function(){
             if(confirm("Do you want to delete?"))
             {
