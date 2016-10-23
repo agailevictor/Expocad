@@ -27,6 +27,7 @@ class Manager extends CI_Controller
      */
     public function staff()
     {
+        $data['gender'] = $this->Common_model->getGender();
         $data['records'] = $this->Manager_model->getStaffs();
         $this->load->view('manager/list_staff', $data);
         $this->load->view('template/footer');

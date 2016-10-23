@@ -74,7 +74,7 @@
                         <td class="text-white"><?php echo $records->amount; ?></td>
                         <td class="text-center v-a-m">
                             <div class="btn-group" role="group" aria-label="...">
-                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-bId="<?php echo $records->bid; ?>" data-bname="<?php echo $records->bname; ?>" data-space="<?php echo $records->space; ?>" data-amount="<?php echo $records->amount; ?>"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-bId="<?php echo $records->bid; ?>" data-bname="<?php echo $records->bname; ?>" data-space="<?php echo $records->space; ?>" data-amount="<?php echo $records->amount; ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Allocate">&nbsp;</span></a>
                             </div>
                         </td>                        
                     </tr>

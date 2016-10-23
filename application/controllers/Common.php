@@ -146,4 +146,18 @@ class Common extends CI_Controller
             }
         }
     }
+
+    /**
+     * @
+     * date:23/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get request list
+     */
+    public function get_approvebooth()
+    {
+        $data['records'] = $this->Common_model->get_approvebooth();
+        $this->load->view('admin/list_appbooth',$data);
+        $this->load->view('template/footer'); 
+    }
 }

@@ -59,34 +59,48 @@
             <div class="col-lg-12">
                 <table id="datatables-example" class="table table-striped table-bordered">
                     <thead>
-                    <tr>
-                        <th  style="font-weight: 600; color: #2c97de">No</th>
-                        <th  style="font-weight: 600; color: #2c97de">Name</th>
-                        <th  style="font-weight: 600; color: #2c97de">Username</th>
-                        <th  style="font-weight: 600; color: #2c97de">Email</th>
-                        <th  style="font-weight: 600; color: #2c97de">Mobile</th>
-                        <th  style="font-weight: 600; color: #2c97de">Actions</th>
-                    </tr>
+                        <tr>
+                            <th  style="font-weight: 600; color: #2c97de">No</th>
+                            <th  style="font-weight: 600; color: #2c97de">Name</th>
+                            <th  style="font-weight: 600; color: #2c97de">Username</th>
+                            <th  style="font-weight: 600; color: #2c97de">Gender</th>
+                            <th  style="font-weight: 600; color: #2c97de">Age</th>
+                            <th  style="font-weight: 600; color: #2c97de">House Name</th>
+                            <th  style="font-weight: 600; color: #2c97de">Street Name</th>
+                            <th  style="font-weight: 600; color: #2c97de">City</th>
+                            <th  style="font-weight: 600; color: #2c97de">State</th>
+                            <th  style="font-weight: 600; color: #2c97de">Pincode</th>
+                            <th  style="font-weight: 600; color: #2c97de">Email</th>
+                            <th  style="font-weight: 600; color: #2c97de">Mobile</th>
+                            <th  style="font-weight: 600; color: #2c97de">Actions</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <?php $sno=1;
-                    foreach ($records as $records):?>
+                        <?php $sno=1;
+                        foreach ($records as $records):?>
                         <tr>
                             <td class="text-white"><?php echo $sno; ?></td>
                             <td class="text-white"><?php echo $records->name; ?></td>
                             <td class="text-white"><?php echo $records->user_name; ?></td>
+                            <td class="text-white"><?php echo $records->gender; ?></td>
+                            <td class="text-white"><?php echo $records->age; ?></td>
+                            <td class="text-white"><?php echo $records->housename; ?></td>
+                            <td class="text-white"><?php echo $records->streetname; ?></td>
+                            <td class="text-white"><?php echo $records->city; ?></td>                         
+                            <td class="text-white"><?php echo $records->state; ?></td>
+                            <td class="text-white"><?php echo $records->pincode; ?></td>                                 
                             <td class="text-white"><?php echo $records->email; ?></td>
                             <td class="text-white"><?php echo $records->mobile; ?></td>
                             <td class="text-center v-a-m">
                                 <div class="btn-group" role="group" aria-label="...">
-                                    <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-userId="<?php echo $records->user_id; ?>" data-Name="<?php echo $records->name; ?>" data-Username="<?php echo $records->user_name  ; ?>" data-email="<?php echo $records->email ; ?>" data-mobile="<?php echo $records->mobile ; ?>"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>
-                                    <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash">&nbsp;</span></a>
+                                    <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-userId="<?php echo $records->user_id; ?>" data-Name="<?php echo $records->name; ?>" data-Username="<?php echo $records->user_name  ; ?>" data-gender="<?php echo $records->gender ; ?>" data-age="<?php echo $records->age ; ?>" data-hname="<?php echo $records->housename ; ?>" data-sname="<?php echo $records->streetname ; ?>" data-city="<?php echo $records->city ; ?>" data-state="<?php echo $records->state ; ?>" data-pincode="<?php echo $records->pincode ; ?>"  data-email="<?php echo $records->email ; ?>" data-mobile="<?php echo $records->mobile ; ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit">&nbsp;</span></a>
+                                    <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete">&nbsp;</span></a>
                                 </div>
                             </td>
                         </tr>
                         <?php
                         $sno=$sno+1;
-                    endforeach; ?>
+                        endforeach; ?>
                     </tbody>
                 </table>
                 <!-- END Zero Configuration -->
@@ -123,33 +137,88 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="from_datepicker" class="col-sm-3 control-label">Email</label>
+                                <label for="from_datepicker" class="col-sm-3 control-label">Gender</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control"  id="stremailA" name="stremailA">
-                                    <?php echo form_error('stremailA'); ?>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="to_datepicker" class="col-sm-3 control-label">Mobile</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control"  id="strmobileA" name="strmobileA">
-                                    <?php echo form_error('strmobileA'); ?>
-                                </div>
+                                    <select name="strgenderA" class="form-control" id="strgenderA">
+                                        <option value=""> --- Select --- </option>
+                                        <?php
+                                        foreach ($gender as $gender):?>
+                                        <option value="<?php echo $gender->gender_id; ?>"><?php echo $gender->type; ?> </option>
+                                    <?php  endforeach;?>
+                                </select>
+                                <?php echo form_error('strgenderA'); ?>
                             </div>
                         </div>
-                        <div class="col-md-4 col-md-offset-2"></div>
-
-                        <!-- END Basic Elements -->
+                        <div class="form-group">
+                            <label for="from_datepicker" class="col-sm-3 control-label">Age</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  id="strageA" name="strageA">
+                                <?php echo form_error('strageA'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="from_datepicker" class="col-sm-3 control-label">House Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  id="strhnameA" name="strhnameA">
+                                <?php echo form_error('strhnameA'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="from_datepicker" class="col-sm-3 control-label">Street Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  id="strsnameA" name="strsnameA">
+                                <?php echo form_error('strsnameA'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="from_datepicker" class="col-sm-3 control-label">City</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  id="strcityA" name="strcityA">
+                                <?php echo form_error('strcityA'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="from_datepicker" class="col-sm-3 control-label">State</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  id="strstateA" name="strstateA">
+                                <?php echo form_error('strstateA'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="from_datepicker" class="col-sm-3 control-label">Pincode</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  id="strpincA" name="strpincA">
+                                <?php echo form_error('strpincA'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="from_datepicker" class="col-sm-3 control-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  id="stremailA" name="stremailA">
+                                <?php echo form_error('stremailA'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="to_datepicker" class="col-sm-3 control-label">Mobile</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control"  id="strmobileA" name="strmobileA">
+                                <?php echo form_error('strmobileA'); ?>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-4 col-md-offset-2"></div>
+
+                    <!-- END Basic Elements -->
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
-                <input type="submit" class="btn btn-primary btn-sm" value="Add" />
-            </div>
-            <?php echo form_close();?>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary btn-sm" value="Add" />
+        </div>
+        <?php echo form_close();?>
     </div>
+</div>
 </div>
 
 <div class="modal fade" id="myModaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
@@ -177,6 +246,55 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="strusername" name="strusername">
                                     <?php echo form_error('strusrname'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="from_datepicker" class="col-sm-3 control-label">Gender</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="strgender" name="strgender">
+                                    <?php echo form_error('strgender'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="from_datepicker" class="col-sm-3 control-label">Age</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control"  id="strage" name="strage">
+                                    <?php echo form_error('strage'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="from_datepicker" class="col-sm-3 control-label">House Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control"  id="strhname" name="strhname">
+                                    <?php echo form_error('strhname'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="from_datepicker" class="col-sm-3 control-label">Street Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control"  id="strsname" name="strsname">
+                                    <?php echo form_error('strsname'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="from_datepicker" class="col-sm-3 control-label">City</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control"  id="strcity" name="strcity">
+                                    <?php echo form_error('strcity'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="from_datepicker" class="col-sm-3 control-label">State</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control"  id="strstate" name="strstate">
+                                    <?php echo form_error('strstate'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="from_datepicker" class="col-sm-3 control-label">Pincode</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control"  id="strpinc" name="strpinc">
+                                    <?php echo form_error('strpinc'); ?>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -265,11 +383,25 @@
             var Id = $(this).attr("data-userId");
             var Name = $(this).attr("data-Name");
             var Username = $(this).attr("data-username");
+            var Gender = $(this).attr("data-gender");
+            var Age = $(this).attr("data-age");
+            var Hname = $(this).attr("data-hname");
+            var Sname = $(this).attr("data-sname");
+            var City = $(this).attr("data-city");
+            var State = $(this).attr("data-state");
+            var Pincode = $(this).attr("data-pincode");
             var Email = $(this).attr("data-email");
             var Mobile = $(this).attr("data-mobile");
             $('#userId').val(Id);
             $('#strname').val(Name) ;
             $('#strusername').val(Username );
+            $('#strgender').val(Gender);
+            $('#strage').val(Age);
+            $('#strhname').val(Hname );
+            $('#strsname').val(Sname );
+            $('#strcity').val(City );
+            $('#strstate').val(State );
+            $('#strpinc').val(Pincode );
             $('#stremail').val(Email) ;
             $('#strmobile').val(Mobile);
         });

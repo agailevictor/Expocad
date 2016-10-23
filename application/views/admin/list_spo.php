@@ -89,8 +89,8 @@
                         <td class="text-white"><?php echo $records->sp_phone; ?></td>
                         <td class="text-center v-a-m">
                             <div class="btn-group" role="group" aria-label="...">
-                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-userId="<?php echo $records->sp_id; ?>" data-Name="<?php echo $records->sp_name; ?>" data-age="<?php echo $records->sp_age ; ?>" data-hname="<?php echo $records->sp_hname ; ?>" data-sname="<?php echo $records->sp_street; ?>" data-city="<?php echo $records->sp_city ; ?>" data-state="<?php echo $records->sp_state ; ?>" data-pincode="<?php echo $records->sp_pin ; ?>" data-email="<?php echo $records->sp_email ; ?>" data-mobile="<?php echo $records->sp_phone ; ?>"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>
-                                <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-userId="<?php echo $records->sp_id; ?>" data-Name="<?php echo $records->sp_name; ?>" data-age="<?php echo $records->sp_age ; ?>" data-hname="<?php echo $records->sp_hname ; ?>" data-sname="<?php echo $records->sp_street; ?>" data-city="<?php echo $records->sp_city ; ?>" data-state="<?php echo $records->sp_state ; ?>" data-pincode="<?php echo $records->sp_pin ; ?>" data-email="<?php echo $records->sp_email ; ?>" data-mobile="<?php echo $records->sp_phone ; ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete">&nbsp;</span></a>
                             </div>
                         </td>                        
                     </tr>

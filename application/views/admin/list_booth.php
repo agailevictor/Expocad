@@ -77,8 +77,8 @@
                         <td class="text-white"><?php echo $records->amount; ?></td>
                         <td class="text-center v-a-m">
                             <div class="btn-group" role="group" aria-label="...">
-                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-bId="<?php echo $records->bid; ?>" data-bname="<?php echo $records->bname; ?>" data-space="<?php echo $records->space; ?>" data-amount="<?php echo $records->amount; ?>"><span class="glyphicon glyphicon-edit">&nbsp;</span></a>
-                                <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-bId="<?php echo $records->bid; ?>" data-bname="<?php echo $records->bname; ?>" data-space="<?php echo $records->space; ?>" data-amount="<?php echo $records->amount; ?>" data-status="<?php echo $records->status ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete">&nbsp;</span></a>
                             </div>
                         </td>                        
                     </tr>
@@ -186,7 +186,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary btn-sm" value="Save Changes" />
+            <input type="submit" class="btn btn-primary btn-sm" value="Save Changes" id="subbtn" />
         </div>
         <?php echo form_close();?>
     </div>
@@ -275,7 +275,13 @@
             var bid = $(this).attr("data-bId");            
             var bname = $(this).attr("data-bname");
             var space = $(this).attr("data-space");
-            var amount = $(this).attr("data-amount");         
+            var amount = $(this).attr("data-amount");
+            var status = $(this).attr("data-status");
+            if(status == 0){
+                $('#subbtn').removeClass('disabled');
+            }
+            else{
+                $('#subbtn').addClass('disabled');            }         
             $('#bId').val(bid);
             $('#strbname').val(bname) ;
             $('#strspace').val(space);

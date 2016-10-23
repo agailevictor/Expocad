@@ -232,10 +232,10 @@
                                                 <small class="text-uppercase">
                                                     <strong>Notifications</strong>
                                                 </small>
-                                                <a role="button" href="#"
+                                                <!-- <a role="button" href="#"
                                                 class="btn m-t-0 btn-xs btn-default pull-right">
                                                 <i class="fa fa-fw fa-gear"></i>
-                                            </a>
+                                            </a> -->
                                         </li>
 
                                         <!-- START Scroll Inside Panel -->

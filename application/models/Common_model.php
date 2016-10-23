@@ -89,7 +89,7 @@ class Common_model extends CI_Model
      */
     public function getManagers()
     {
-        $query = "SELECT a.user_id user_id,a.name name,a.user_name user_name,b.type gender,a.age age,a.housename housename,a.streetname streetname,a.city city,a.state state,a.pincode pincode, a.email email, a.mobile mobile FROM tbl_users a join tbl_gender b on a.gender = b.gender_id where a.type = 2";
+        $query = "SELECT a.user_id user_id,a.name name,a.user_name user_name,b.type gender,a.age age,a.housename housename,a.streetname streetname,a.city city,a.state state,a.pincode pincode, a.email email, a.mobile mobile FROM tbl_users a join tbl_gender b on a.gender = b.gender_id where a.type = 2 and a.status = 1";
         return $this->db->query($query)->result();
     }   
 
@@ -102,7 +102,7 @@ class Common_model extends CI_Model
      */
     public function getbooths()
     {
-        $query = "SELECT * FROM tbl_booth where is_all = 'N'";
+        $query = "SELECT * FROM tbl_booth ";
         return $this->db->query($query)->result();
     }
 
@@ -169,5 +169,18 @@ class Common_model extends CI_Model
     {
         $this->db->insert('tbl_booth', $data);
         return true;
+    } 
+
+    /**
+     * @
+     * date: 23/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get approve list
+     */
+    public function get_approvebooth()
+    {   
+        $query = "SELECT a.bid bid,a.bname bname,a.space space,a.amount amount, b.name name FROM tbl_booth a join tbl_users b on a.exid = b.user_id where a.status = 2";
+        return $this->db->query($query)->result();
     }              
 }
