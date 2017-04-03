@@ -182,5 +182,43 @@ class Common_model extends CI_Model
     {   
         $query = "SELECT a.bid bid,a.bname bname,a.space space,a.amount amount, b.name name FROM tbl_booth a join tbl_users b on a.exid = b.user_id where a.status = 2";
         return $this->db->query($query)->result();
-    }              
+    }
+    /**
+     * @
+     * date: 02/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to add new manager
+     */
+    public function add_manager($data)
+    {
+        $this->db->insert('tbl_users', $data);
+        return true;
+    }
+    /**
+     * @
+     * date: 02/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to delete manager
+     */
+    public function delete_manager($id)      
+    {
+       $this->db->where('user_id', $id);
+       $this->db->delete('tbl_users');       
+    }
+    /**
+     * @
+     * date: 02/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to check the manager deletion success or not
+     */
+     public function count_manager_id($id){
+        $this->db->from('tbl_users');
+        $this->db->where('user_id', $id);
+        $query = $this->db->get();
+        $rowcount = $query->num_rows();
+        return $rowcount;        
+     }                 
 }

@@ -159,5 +159,85 @@ class Common extends CI_Controller
         $data['records'] = $this->Common_model->get_approvebooth();
         $this->load->view('admin/list_appbooth',$data);
         $this->load->view('template/footer'); 
+    }    
+    /**
+     * @
+     * date:02/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to add new manager
+     */
+    public function add_manager()
+    {
+        $this->form_validation->set_rules('strnameA', 'Name', 'trim|required');
+        $this->form_validation->set_rules('strusernameA', 'Username', 'trim|required');
+        $this->form_validation->set_rules('strgenderA', 'Gender', 'trim|required');
+        $this->form_validation->set_rules('strageA', 'Age', 'trim|required|numeric');
+        $this->form_validation->set_rules('strhnameA', 'House Name', 'trim|required');
+        $this->form_validation->set_rules('strsnameA', 'Street Name', 'trim|required');
+        $this->form_validation->set_rules('strcityA', 'City', 'trim|required');
+        $this->form_validation->set_rules('strstateA', 'State', 'trim|required');
+        $this->form_validation->set_rules('strpincA', 'Pincode', 'trim|required|numeric');
+        $this->form_validation->set_rules('stremailA', 'Email', 'trim|required');
+        $this->form_validation->set_rules('strmobileA', 'Mobile', 'trim|required|numeric');
+        if ($this->form_validation->run() == TRUE) {
+            $data = array('user_name' =>$this->input->post("strusernameA"),'password' =>"ZGVtbw==",'name' =>$this->input->post("strnameA"),'gender' => $this->input->post("strgenderA"),'age' =>$this->input->post("strageA"),'housename' =>$this->input->post("strhnameA"),'streetname' => $this->input->post("strsnameA"),'city' =>$this->input->post("strcityA"),'state' =>$this->input->post("strstateA"),'pincode' => $this->input->post("strpincA"),'email' =>$this->input->post("stremailA"),'mobile' =>$this->input->post("strmobileA"),'type' =>2,'parent_id' =>1,'status' =>1);
+            $result = $this->Common_model->add_manager($data);
+            if($result==true){
+                $this->session->set_flashdata('success', 'Manager '. $this->input->post("strnameA") . ' successfully added ');
+                redirect('common/listmanager', 'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Manager not added.');
+                redirect('common/listmanager', 'refresh');
+            }
+        }
+    }
+    /**
+     * @
+     * date:02/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to update manager
+     */
+        public function update_manager(){
+            $this->form_validation->set_rules('strnameA', 'Name', 'trim|required');
+            $this->form_validation->set_rules('strusernameA', 'Username', 'trim|required');
+            $this->form_validation->set_rules('strgenderA', 'Gender', 'trim|required');
+            $this->form_validation->set_rules('strageA', 'Age', 'trim|required|numeric');
+            $this->form_validation->set_rules('strhnameA', 'House Name', 'trim|required');
+            $this->form_validation->set_rules('strsnameA', 'Street Name', 'trim|required');
+            $this->form_validation->set_rules('strcityA', 'City', 'trim|required');
+            $this->form_validation->set_rules('strstateA', 'State', 'trim|required');
+            $this->form_validation->set_rules('strpincA', 'Pincode', 'trim|required|numeric');
+            $this->form_validation->set_rules('stremailA', 'Email', 'trim|required');
+            $this->form_validation->set_rules('strmobileA', 'Mobile', 'trim|required|numeric');
+            if ($this->form_validation->run() == TRUE) {
+                $id= $this->input->post('userId');
+                $data = array('user_name' =>$this->input->post("strusernameA"),'password' =>"ZGVtbw==",'name' =>$this->input->post("strnameA"),'gender' => $this->input->post("strgenderA"),'age' =>$this->input->post("strageA"),'housename' =>$this->input->post("strhnameA"),'streetname' => $this->input->post("strsnameA"),'city' =>$this->input->post("strcityA"),'state' =>$this->input->post("strstateA"),'pincode' => $this->input->post("strpincA"),'email' =>$this->input->post("stremailA"),'mobile' =>$this->input->post("strmobileA"),'type' =>2,'parent_id' =>1,'status' =>1);
+                $result = $this->Common_model->update_manager($id,$data);
+                if($result==true){
+                    $this->session->set_flashdata('success', 'Manager '. $this->input->post("strnameA") . ' successfully updated ');
+                    redirect('common/listmanager', 'refresh');
+                }else{
+                    $this->session->set_flashdata('error', 'Manager Details not updated.');
+                    redirect('common/listmanager', 'refresh');
+                }
+            }        
+        }    
+    /**
+     * @
+     * date:02/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to delete manager
+     */
+    public function delete_manager(){
+        $id= $this->input->post('id');
+        $result=$this->Common_model->delete_manager($id);
+        if($this->Common_model->count_manager_id($id)==0){
+            $this->session->set_flashdata('success','Manager details successfully deleted ');
+        }else{
+            $this->session->set_flashdata('error', 'Manager deletion failed.');
+        }
     }
 }

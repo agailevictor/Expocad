@@ -228,15 +228,6 @@
             }
 
         });
-        $(".modaldelete").click(function(){
-            if(confirm("Do you want to delete?"))
-            {
-                var id = $(this).attr("data-journalId");
-                $.post( "<?php echo base_url(); ?>journal/delete_journal",{id:id}, function( data ) {
-                    location.reload();
-                });
-            }
-        });
 
         $("#up_booth").validate({
             rules: {
