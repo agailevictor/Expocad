@@ -200,20 +200,20 @@ class Common extends CI_Controller
      * Description:function to update manager
      */
         public function update_manager(){
-            $this->form_validation->set_rules('strnameA', 'Name', 'trim|required');
-            $this->form_validation->set_rules('strusernameA', 'Username', 'trim|required');
-            $this->form_validation->set_rules('strgenderA', 'Gender', 'trim|required');
-            $this->form_validation->set_rules('strageA', 'Age', 'trim|required|numeric');
-            $this->form_validation->set_rules('strhnameA', 'House Name', 'trim|required');
-            $this->form_validation->set_rules('strsnameA', 'Street Name', 'trim|required');
-            $this->form_validation->set_rules('strcityA', 'City', 'trim|required');
-            $this->form_validation->set_rules('strstateA', 'State', 'trim|required');
-            $this->form_validation->set_rules('strpincA', 'Pincode', 'trim|required|numeric');
-            $this->form_validation->set_rules('stremailA', 'Email', 'trim|required');
-            $this->form_validation->set_rules('strmobileA', 'Mobile', 'trim|required|numeric');
+            $this->form_validation->set_rules('strname', 'Name', 'trim|required');
+            $this->form_validation->set_rules('strusername', 'Username', 'trim|required');
+            $this->form_validation->set_rules('strgender', 'Gender', 'trim|required');
+            $this->form_validation->set_rules('strage', 'Age', 'trim|required|numeric');
+            $this->form_validation->set_rules('strhname', 'House Name', 'trim|required');
+            $this->form_validation->set_rules('strsname', 'Street Name', 'trim|required');
+            $this->form_validation->set_rules('strcity', 'City', 'trim|required');
+            $this->form_validation->set_rules('strstate', 'State', 'trim|required');
+            $this->form_validation->set_rules('strpinc', 'Pincode', 'trim|required|numeric');
+            $this->form_validation->set_rules('stremail', 'Email', 'trim|required');
+            $this->form_validation->set_rules('strmobile', 'Mobile', 'trim|required|numeric');
             if ($this->form_validation->run() == TRUE) {
-                $id= $this->input->post('userId');
-                $data = array('user_name' =>$this->input->post("strusernameA"),'password' =>"ZGVtbw==",'name' =>$this->input->post("strnameA"),'gender' => $this->input->post("strgenderA"),'age' =>$this->input->post("strageA"),'housename' =>$this->input->post("strhnameA"),'streetname' => $this->input->post("strsnameA"),'city' =>$this->input->post("strcityA"),'state' =>$this->input->post("strstateA"),'pincode' => $this->input->post("strpincA"),'email' =>$this->input->post("stremailA"),'mobile' =>$this->input->post("strmobileA"),'type' =>2,'parent_id' =>1,'status' =>1);
+                $id= $this->input->post('userId');               
+                $data = array('user_name' =>$this->input->post("strusername"),'name' =>$this->input->post("strname"),'gender' => $this->input->post("strgender"),'age' =>$this->input->post("strage"),'housename' =>$this->input->post("strhname"),'streetname' => $this->input->post("strsname"),'city' =>$this->input->post("strcity"),'state' =>$this->input->post("strstate"),'pincode' => $this->input->post("strpinc"),'email' =>$this->input->post("stremail"),'mobile' =>$this->input->post("strmobile"));
                 $result = $this->Common_model->update_manager($id,$data);
                 if($result==true){
                     $this->session->set_flashdata('success', 'Manager '. $this->input->post("strnameA") . ' successfully updated ');

@@ -197,6 +197,30 @@ class Common_model extends CI_Model
     }
     /**
      * @
+     * date: 03/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to update manager
+     */
+    public function update_manager($id,$data)
+    {
+        $this->db->where('user_id',$id);
+        $this->db->set('user_name',$data['user_name']);
+        $this->db->set('name',$data['name']);
+        $this->db->set('gender',$data['gender']);
+        $this->db->set('age',$data['age']);
+        $this->db->set('housename',$data['housename']);
+        $this->db->set('streetname',$data['streetname']);
+        $this->db->set('city',$data['city']);
+        $this->db->set('state',$data['state']);
+        $this->db->set('pincode',$data['pincode']);
+        $this->db->set('email',$data['email']);
+        $this->db->set('mobile',$data['mobile']);                
+        $this->db->update('tbl_users');
+        return true;
+    }
+    /**
+     * @
      * date: 02/04/2017
      * Parameter:none
      * Return type:boolean
@@ -204,9 +228,9 @@ class Common_model extends CI_Model
      */
     public function delete_manager($id)      
     {
-       $this->db->where('user_id', $id);
-       $this->db->delete('tbl_users');       
-    }
+     $this->db->where('user_id', $id);
+     $this->db->delete('tbl_users');       
+ }
     /**
      * @
      * date: 02/04/2017
@@ -214,11 +238,11 @@ class Common_model extends CI_Model
      * Return type:boolean
      * Description:function to check the manager deletion success or not
      */
-     public function count_manager_id($id){
+    public function count_manager_id($id){
         $this->db->from('tbl_users');
         $this->db->where('user_id', $id);
         $query = $this->db->get();
         $rowcount = $query->num_rows();
         return $rowcount;        
-     }                 
+    }                 
 }
