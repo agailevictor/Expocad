@@ -228,9 +228,9 @@ class Common_model extends CI_Model
      */
     public function delete_manager($id)      
     {
-     $this->db->where('user_id', $id);
-     $this->db->delete('tbl_users');       
- }
+       $this->db->where('user_id', $id);
+       $this->db->delete('tbl_users');       
+   }
     /**
      * @
      * date: 02/04/2017
@@ -244,5 +244,47 @@ class Common_model extends CI_Model
         $query = $this->db->get();
         $rowcount = $query->num_rows();
         return $rowcount;        
-    }                 
+    }
+    /**
+     * @
+     * date: 02/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to delete booth
+     */
+    public function delete_booth($id)      
+    {
+       $this->db->where('bid', $id);
+       $this->db->delete('tbl_booth');       
+   }
+    /**
+     * @
+     * date: 02/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to check the booth deletion success or not
+     */
+    public function count_booth_id($id){
+        $this->db->from('tbl_booth');
+        $this->db->where('bid', $id);
+        $query = $this->db->get();
+        $rowcount = $query->num_rows();
+        return $rowcount;        
+    }
+    /**
+     * @
+     * date: 04/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to update booth
+     */
+    public function update_booth($id,$data)
+    {
+        $this->db->where('bid',$id);
+        $this->db->set('bname',$data['bname']);
+        $this->db->set('space',$data['space']);
+        $this->db->set('amount',$data['amount']);               
+        $this->db->update('tbl_booth');
+        return true;
+    }                      
 }
