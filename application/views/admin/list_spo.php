@@ -117,7 +117,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-horizontal">
-                        <?php echo form_open('common/add_manager' , array('id' => 'add_sponsor'));?>
+                        <?php echo form_open('common/add_sponsor' , array('id' => 'add_sponsor'));?>
                         <div class="form-group">
                             <label for="project_name" class="col-sm-3 control-label">Name</label>
                             <div class="col-sm-9">
@@ -208,9 +208,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-horizontal">
-                        <?php echo form_open('common/update_manager' , array('id' => 'up_sponsor'));?>
+                        <?php echo form_open('common/update_sponsor' , array('id' => 'up_sponsor'));?>
                         <div class="form-group">
-                            <input type="hidden" id="userId" name="userId">
+                            <input type="hidden" id="spId" name="spId">
                             <label for="project_name" class="col-sm-3 control-label">Name</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="strname" name="strname">
@@ -431,7 +431,7 @@
             var Pincode = $(this).attr("data-pincode");
             var Email = $(this).attr("data-email");
             var Mobile = $(this).attr("data-mobile");           
-            $('#userId').val(Id);
+            $('#spId').val(Id);
             $('#strname').val(Name) ;
             $('#strusername').val(Username );
             $('#strgender').val(Gender);

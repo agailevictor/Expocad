@@ -280,4 +280,66 @@ class Common extends CI_Controller
             $this->session->set_flashdata('error', 'Manager deletion failed.');
         }
     }
+    /**
+     * @
+     * date:04/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to add new sponsor
+     */
+    public function add_sponsor()
+    {
+        $this->form_validation->set_rules('strnameA', 'Name', 'trim|required');
+        $this->form_validation->set_rules('strageA', 'Age', 'trim|required|numeric');
+        $this->form_validation->set_rules('strhnameA', 'House Name', 'trim|required');
+        $this->form_validation->set_rules('strsnameA', 'Street Name', 'trim|required');
+        $this->form_validation->set_rules('strcityA', 'City', 'trim|required');
+        $this->form_validation->set_rules('strstateA', 'State', 'trim|required');
+        $this->form_validation->set_rules('strpincA', 'Pincode', 'trim|required|numeric');
+        $this->form_validation->set_rules('stremailA', 'Email', 'trim|required');
+        $this->form_validation->set_rules('strmobileA', 'Mobile', 'trim|required|numeric');
+        if ($this->form_validation->run() == TRUE) {            
+            $data = array('sp_name' =>$this->input->post("strnameA"),'sp_age' =>$this->input->post("strageA"),'sp_email' =>$this->input->post("stremailA"),'sp_phone' =>$this->input->post("strmobileA"),'sp_hname' =>$this->input->post("strhnameA"),'sp_street' => $this->input->post("strsnameA"),'sp_city' =>$this->input->post("strcityA"),'sp_state' =>$this->input->post("strstateA"),'sp_pin' => $this->input->post("strpincA"),'sp_status' =>1);
+            $result = $this->Common_model->add_sponsor($data);
+            if($result==true){
+                $this->session->set_flashdata('success', 'Sponsor '. $this->input->post("strnameA") . ' successfully added ');
+                redirect('common/list_sponsor', 'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Sponsor not added.');
+                redirect('common/list_sponsor', 'refresh');
+            }
+        }
+    }
+
+    /**
+     * @
+     * date:04/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to update sponsor
+     */
+    public function update_sponsor()
+    {
+        $this->form_validation->set_rules('strname', 'Name', 'trim|required');
+        $this->form_validation->set_rules('strage', 'Age', 'trim|required|numeric');
+        $this->form_validation->set_rules('strhname', 'House Name', 'trim|required');
+        $this->form_validation->set_rules('strsname', 'Street Name', 'trim|required');
+        $this->form_validation->set_rules('strcity', 'City', 'trim|required');
+        $this->form_validation->set_rules('strstate', 'State', 'trim|required');
+        $this->form_validation->set_rules('strpinc', 'Pincode', 'trim|required|numeric');
+        $this->form_validation->set_rules('stremail', 'Email', 'trim|required');
+        $this->form_validation->set_rules('strmobile', 'Mobile', 'trim|required|numeric');
+        if ($this->form_validation->run() == TRUE) {
+            $id= $this->input->post('spId');
+            $data = array('sp_name' =>$this->input->post("strname"),'sp_age' =>$this->input->post("strage"),'sp_email' =>$this->input->post("stremail"),'sp_phone' =>$this->input->post("strmobile"),'sp_hname' =>$this->input->post("strhname"),'sp_street' => $this->input->post("strsname"),'sp_city' =>$this->input->post("strcity"),'sp_state' =>$this->input->post("strstate"),'sp_pin' => $this->input->post("strpinc"));
+            $result = $this->Common_model->update_sponsor($id,$data);
+            if($result==true){
+                $this->session->set_flashdata('success', 'Sponsor '. $this->input->post("strname") . ' successfully updated ');
+                redirect('common/list_sponsor', 'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Sponsor not updated.');
+                redirect('common/list_sponsor', 'refresh');
+            }
+        }
+    }         
 }
