@@ -133,7 +133,7 @@
                                 <label for="project_name" class="col-sm-3 control-label">Username</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="strusernameA" name="strusernameA">
-                                    <?php echo form_error('strusrnameA'); ?>
+                                    <?php echo form_error('strusernameA'); ?>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -245,7 +245,7 @@
                                 <label for="project_name" class="col-sm-3 control-label">Username</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="strusername" name="strusername">
-                                    <?php echo form_error('strusrname'); ?>
+                                    <?php echo form_error('strusername'); ?>
                                 </div>
                             </div>
                             <div class="form-group">

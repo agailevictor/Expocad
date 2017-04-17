@@ -49,7 +49,7 @@ class Manager_model extends CI_Model
         return $this->db->query($query)->result();
     }
 
-        /**
+    /**
      * @
      * date: 23/10/2016
      * Parameter:none
@@ -60,5 +60,41 @@ class Manager_model extends CI_Model
     {   
         $query = "SELECT a.bid bid,a.bname bname,a.space space,a.amount amount, b.name name FROM tbl_booth a join tbl_users b on a.exid = b.user_id where a.status = 3 and a.mid =" .$id;
         return $this->db->query($query)->result();
-    }          
+    }
+
+    /**
+     * @
+     * date: 23/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get approve list
+     */
+    public function add_staff($data)
+    {
+        return $this->db->insert('tbl_users', $data);
+    }
+
+    /**
+     * @
+     * date: 23/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get approve list
+     */
+    public function update_staff($id,$data)
+    {
+        $this->db->where('user_id',$id);
+        $this->db->set('user_name',$data['user_name']);
+        $this->db->set('name',$data['name']);
+        $this->db->set('gender',$data['gender']);
+        $this->db->set('age',$data['age']);
+        $this->db->set('housename',$data['housename']);
+        $this->db->set('streetname',$data['streetname']);
+        $this->db->set('city',$data['city']);
+        $this->db->set('state',$data['state']);
+        $this->db->set('pincode',$data['pincode']);
+        $this->db->set('email',$data['email']);
+        $this->db->set('mobile',$data['mobile']);
+        return $this->db->update('tbl_users');
+    }
 }
