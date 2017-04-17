@@ -228,9 +228,9 @@ class Common_model extends CI_Model
      */
     public function delete_manager($id)      
     {
-     $this->db->where('user_id', $id);
-     $this->db->delete('tbl_users');       
- }
+       $this->db->where('user_id', $id);
+       $this->db->delete('tbl_users');       
+   }
     /**
      * @
      * date: 02/04/2017
@@ -244,5 +244,81 @@ class Common_model extends CI_Model
         $query = $this->db->get();
         $rowcount = $query->num_rows();
         return $rowcount;        
-    }                 
+    }
+    /**
+     * @
+     * date: 02/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to delete booth
+     */
+    public function delete_booth($id)      
+    {
+       $this->db->where('bid', $id);
+       $this->db->delete('tbl_booth');       
+   }
+    /**
+     * @
+     * date: 02/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to check the booth deletion success or not
+     */
+    public function count_booth_id($id){
+        $this->db->from('tbl_booth');
+        $this->db->where('bid', $id);
+        $query = $this->db->get();
+        $rowcount = $query->num_rows();
+        return $rowcount;        
+    }
+    /**
+     * @
+     * date: 04/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to update booth
+     */
+    public function update_booth($id,$data)
+    {
+        $this->db->where('bid',$id);
+        $this->db->set('bname',$data['bname']);
+        $this->db->set('space',$data['space']);
+        $this->db->set('amount',$data['amount']);               
+        $this->db->update('tbl_booth');
+        return true;
+    } 
+    /**
+     * @
+     * date: 04/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to add new sponsor
+     */
+    public function add_sponsor($data)
+    {
+        $this->db->insert('tbl_sponsor', $data);
+        return true;
+    }
+    /**
+     * @
+     * date: 04/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to update sponsor
+     */
+    public function update_sponsor($id,$data)
+    {
+        $this->db->where('sp_id',$id);
+        $this->db->set('sp_name',$data['sp_name']);
+        $this->db->set('sp_age',$data['sp_age']);
+        $this->db->set('sp_email',$data['sp_email']);
+        $this->db->set('sp_phone',$data['sp_phone']);
+        $this->db->set('sp_hname',$data['sp_hname']);
+        $this->db->set('sp_street',$data['sp_street']);
+        $this->db->set('sp_city',$data['sp_city']);
+        $this->db->set('sp_state',$data['sp_state']);
+        $this->db->set('sp_pin',$data['sp_pin']);               
+        $this->db->update('tbl_sponsor');
+        return true;
+    }                             
 }

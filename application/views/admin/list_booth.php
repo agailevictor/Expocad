@@ -78,7 +78,7 @@
                         <td class="text-center v-a-m">
                             <div class="btn-group" role="group" aria-label="...">
                                 <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-bId="<?php echo $records->bid; ?>" data-bname="<?php echo $records->bname; ?>" data-space="<?php echo $records->space; ?>" data-amount="<?php echo $records->amount; ?>" data-status="<?php echo $records->status ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit">&nbsp;</span></a>
-                                <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" class="modaldelete" data-bId="<?php echo $records->bid; ?>" data-status="<?php echo $records->status ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete">&nbsp;</span></a>
                             </div>
                         </td>                        
                     </tr>
@@ -253,12 +253,17 @@
 
         });
         $(".modaldelete").click(function(){
-            if(confirm("Do you want to delete?"))
-            {
-                var id = $(this).attr("data-journalId");
-                $.post( "<?php echo base_url(); ?>journal/delete_journal",{id:id}, function( data ) {
-                    location.reload();
-                });
+            if($(this).attr("data-status") == 0){
+                if(confirm("Do you want to delete?"))
+                {
+                    var id = $(this).attr("data-bId");
+                    $.post( "<?php echo base_url(); ?>common/delete_booth",{id:id}, function( data ) {
+                        location.reload();
+                    });
+                }
+            }
+            else{
+                alert('Already Allocated, Cannot Delete !')
             }
         });
 
@@ -272,7 +277,8 @@
                 $('#subbtn').removeClass('disabled');
             }
             else{
-                $('#subbtn').addClass('disabled');            }         
+                $('#subbtn').addClass('disabled');            
+            }         
             $('#bId').val(bid);
             $('#strbname').val(bname) ;
             $('#strspace').val(space);

@@ -49,21 +49,7 @@ class Common extends CI_Controller
         $this->load->view('template/dashboard');
         $this->load->view('template/footer'); 
     }
-
-    /**
-     * @
-     * date:15/10/2016
-     * Parameter:none
-     * Return type:none
-     * Description:function to load manager list
-     */
-    public function listmanager()
-    {
-        $data['gender'] = $this->Common_model->getGender();
-        $data['records'] = $this->Common_model->getManagers();
-        $this->load->view('admin/list_manager',$data);
-        $this->load->view('template/footer'); 
-    }    
+   
     
     /**
      * @
@@ -77,6 +63,46 @@ class Common extends CI_Controller
         $data['records'] = $this->Common_model->getbooths();
         $this->load->view('admin/list_booth',$data);
         $this->load->view('template/footer'); 
+    }    
+    /**
+     * @
+     * date:04/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to update booth
+     */
+    public function update_booth(){
+        $this->form_validation->set_rules('strbname', 'Booth Name', 'trim|required|min_length[6]|max_length[15]');
+        $this->form_validation->set_rules('strspace', 'Space', 'trim|required|numeric');
+        $this->form_validation->set_rules('stramount', 'Amount', 'trim|required|numeric');
+        if ($this->form_validation->run() == TRUE) {
+            $id= $this->input->post('bId'); 
+            $data = array('bname' =>$this->input->post("strbname"),'space' =>$this->input->post("strspace"),'amount' => $this->input->post("stramount"));
+            $result = $this->Common_model->update_booth($id,$data);
+            if($result==true){
+                $this->session->set_flashdata('success', 'Booth '. $this->input->post("strbnameA") . ' successfully updated ');
+                redirect('common/listbooth', 'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Booth not updated.');
+                redirect('common/listbooth', 'refresh');
+            }
+        }
+    }
+    /**
+     * @
+     * date:02/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to delete booth
+     */
+    public function delete_booth(){
+        $id= $this->input->post('id');
+        $result=$this->Common_model->delete_booth($id);
+        if($this->Common_model->count_booth_id($id)==0){
+            $this->session->set_flashdata('success','Booth details successfully deleted ');
+        }else{
+            $this->session->set_flashdata('error', 'Booth deletion failed.');
+        }
     } 
 
     /**
@@ -159,6 +185,20 @@ class Common extends CI_Controller
         $data['records'] = $this->Common_model->get_approvebooth();
         $this->load->view('admin/list_appbooth',$data);
         $this->load->view('template/footer'); 
+    } 
+    /**
+     * @
+     * date:15/10/2016
+     * Parameter:none
+     * Return type:none
+     * Description:function to load manager list
+     */
+    public function listmanager()
+    {
+        $data['gender'] = $this->Common_model->getGender();
+        $data['records'] = $this->Common_model->getManagers();
+        $this->load->view('admin/list_manager',$data);
+        $this->load->view('template/footer'); 
     }    
     /**
      * @
@@ -199,31 +239,31 @@ class Common extends CI_Controller
      * Return type:none
      * Description:function to update manager
      */
-        public function update_manager(){
-            $this->form_validation->set_rules('strname', 'Name', 'trim|required');
-            $this->form_validation->set_rules('strusername', 'Username', 'trim|required');
-            $this->form_validation->set_rules('strgender', 'Gender', 'trim|required');
-            $this->form_validation->set_rules('strage', 'Age', 'trim|required|numeric');
-            $this->form_validation->set_rules('strhname', 'House Name', 'trim|required');
-            $this->form_validation->set_rules('strsname', 'Street Name', 'trim|required');
-            $this->form_validation->set_rules('strcity', 'City', 'trim|required');
-            $this->form_validation->set_rules('strstate', 'State', 'trim|required');
-            $this->form_validation->set_rules('strpinc', 'Pincode', 'trim|required|numeric');
-            $this->form_validation->set_rules('stremail', 'Email', 'trim|required');
-            $this->form_validation->set_rules('strmobile', 'Mobile', 'trim|required|numeric');
-            if ($this->form_validation->run() == TRUE) {
-                $id= $this->input->post('userId');               
-                $data = array('user_name' =>$this->input->post("strusername"),'name' =>$this->input->post("strname"),'gender' => $this->input->post("strgender"),'age' =>$this->input->post("strage"),'housename' =>$this->input->post("strhname"),'streetname' => $this->input->post("strsname"),'city' =>$this->input->post("strcity"),'state' =>$this->input->post("strstate"),'pincode' => $this->input->post("strpinc"),'email' =>$this->input->post("stremail"),'mobile' =>$this->input->post("strmobile"));
-                $result = $this->Common_model->update_manager($id,$data);
-                if($result==true){
-                    $this->session->set_flashdata('success', 'Manager '. $this->input->post("strnameA") . ' successfully updated ');
-                    redirect('common/listmanager', 'refresh');
-                }else{
-                    $this->session->set_flashdata('error', 'Manager Details not updated.');
-                    redirect('common/listmanager', 'refresh');
-                }
-            }        
-        }    
+    public function update_manager(){
+        $this->form_validation->set_rules('strname', 'Name', 'trim|required');
+        $this->form_validation->set_rules('strusername', 'Username', 'trim|required');
+        $this->form_validation->set_rules('strgender', 'Gender', 'trim|required');
+        $this->form_validation->set_rules('strage', 'Age', 'trim|required|numeric');
+        $this->form_validation->set_rules('strhname', 'House Name', 'trim|required');
+        $this->form_validation->set_rules('strsname', 'Street Name', 'trim|required');
+        $this->form_validation->set_rules('strcity', 'City', 'trim|required');
+        $this->form_validation->set_rules('strstate', 'State', 'trim|required');
+        $this->form_validation->set_rules('strpinc', 'Pincode', 'trim|required|numeric');
+        $this->form_validation->set_rules('stremail', 'Email', 'trim|required');
+        $this->form_validation->set_rules('strmobile', 'Mobile', 'trim|required|numeric');
+        if ($this->form_validation->run() == TRUE) {
+            $id= $this->input->post('userId');               
+            $data = array('user_name' =>$this->input->post("strusername"),'name' =>$this->input->post("strname"),'gender' => $this->input->post("strgender"),'age' =>$this->input->post("strage"),'housename' =>$this->input->post("strhname"),'streetname' => $this->input->post("strsname"),'city' =>$this->input->post("strcity"),'state' =>$this->input->post("strstate"),'pincode' => $this->input->post("strpinc"),'email' =>$this->input->post("stremail"),'mobile' =>$this->input->post("strmobile"));
+            $result = $this->Common_model->update_manager($id,$data);
+            if($result==true){
+                $this->session->set_flashdata('success', 'Manager '. $this->input->post("strnameA") . ' successfully updated ');
+                redirect('common/listmanager', 'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Manager Details not updated.');
+                redirect('common/listmanager', 'refresh');
+            }
+        }        
+    }    
     /**
      * @
      * date:02/04/2017
@@ -240,4 +280,66 @@ class Common extends CI_Controller
             $this->session->set_flashdata('error', 'Manager deletion failed.');
         }
     }
+    /**
+     * @
+     * date:04/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to add new sponsor
+     */
+    public function add_sponsor()
+    {
+        $this->form_validation->set_rules('strnameA', 'Name', 'trim|required');
+        $this->form_validation->set_rules('strageA', 'Age', 'trim|required|numeric');
+        $this->form_validation->set_rules('strhnameA', 'House Name', 'trim|required');
+        $this->form_validation->set_rules('strsnameA', 'Street Name', 'trim|required');
+        $this->form_validation->set_rules('strcityA', 'City', 'trim|required');
+        $this->form_validation->set_rules('strstateA', 'State', 'trim|required');
+        $this->form_validation->set_rules('strpincA', 'Pincode', 'trim|required|numeric');
+        $this->form_validation->set_rules('stremailA', 'Email', 'trim|required');
+        $this->form_validation->set_rules('strmobileA', 'Mobile', 'trim|required|numeric');
+        if ($this->form_validation->run() == TRUE) {            
+            $data = array('sp_name' =>$this->input->post("strnameA"),'sp_age' =>$this->input->post("strageA"),'sp_email' =>$this->input->post("stremailA"),'sp_phone' =>$this->input->post("strmobileA"),'sp_hname' =>$this->input->post("strhnameA"),'sp_street' => $this->input->post("strsnameA"),'sp_city' =>$this->input->post("strcityA"),'sp_state' =>$this->input->post("strstateA"),'sp_pin' => $this->input->post("strpincA"),'sp_status' =>1);
+            $result = $this->Common_model->add_sponsor($data);
+            if($result==true){
+                $this->session->set_flashdata('success', 'Sponsor '. $this->input->post("strnameA") . ' successfully added ');
+                redirect('common/list_sponsor', 'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Sponsor not added.');
+                redirect('common/list_sponsor', 'refresh');
+            }
+        }
+    }
+
+    /**
+     * @
+     * date:04/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to update sponsor
+     */
+    public function update_sponsor()
+    {
+        $this->form_validation->set_rules('strname', 'Name', 'trim|required');
+        $this->form_validation->set_rules('strage', 'Age', 'trim|required|numeric');
+        $this->form_validation->set_rules('strhname', 'House Name', 'trim|required');
+        $this->form_validation->set_rules('strsname', 'Street Name', 'trim|required');
+        $this->form_validation->set_rules('strcity', 'City', 'trim|required');
+        $this->form_validation->set_rules('strstate', 'State', 'trim|required');
+        $this->form_validation->set_rules('strpinc', 'Pincode', 'trim|required|numeric');
+        $this->form_validation->set_rules('stremail', 'Email', 'trim|required');
+        $this->form_validation->set_rules('strmobile', 'Mobile', 'trim|required|numeric');
+        if ($this->form_validation->run() == TRUE) {
+            $id= $this->input->post('spId');
+            $data = array('sp_name' =>$this->input->post("strname"),'sp_age' =>$this->input->post("strage"),'sp_email' =>$this->input->post("stremail"),'sp_phone' =>$this->input->post("strmobile"),'sp_hname' =>$this->input->post("strhname"),'sp_street' => $this->input->post("strsname"),'sp_city' =>$this->input->post("strcity"),'sp_state' =>$this->input->post("strstate"),'sp_pin' => $this->input->post("strpinc"));
+            $result = $this->Common_model->update_sponsor($id,$data);
+            if($result==true){
+                $this->session->set_flashdata('success', 'Sponsor '. $this->input->post("strname") . ' successfully updated ');
+                redirect('common/list_sponsor', 'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Sponsor not updated.');
+                redirect('common/list_sponsor', 'refresh');
+            }
+        }
+    }         
 }
