@@ -49,7 +49,7 @@ class Common extends CI_Controller
         $this->load->view('template/dashboard');
         $this->load->view('template/footer'); 
     }
-   
+
     
     /**
      * @
@@ -72,7 +72,7 @@ class Common extends CI_Controller
      * Description:function to update booth
      */
     public function update_booth(){
-        $this->form_validation->set_rules('strbname', 'Booth Name', 'trim|required|min_length[6]|max_length[15]');
+        $this->form_validation->set_rules('strbname', 'Booth Name', 'trim|required');
         $this->form_validation->set_rules('strspace', 'Space', 'trim|required|numeric');
         $this->form_validation->set_rules('stramount', 'Amount', 'trim|required|numeric');
         if ($this->form_validation->run() == TRUE) {
@@ -119,6 +119,29 @@ class Common extends CI_Controller
         $this->load->view('admin/allocate_booth',$data);
         $this->load->view('template/footer'); 
     } 
+    /**
+     * @
+     * date:20/04/2016
+     * Parameter:none
+     * Return type:none
+     * Description:function to allocate managers of booth
+     */
+    public function allocate_booths()
+    {
+        $this->form_validation->set_rules('strmanag', 'Manager Name', 'trim|required');
+        if ($this->form_validation->run() == TRUE) {
+            $id= $this->input->post('bId'); 
+            $manager = $this->input->post("strmanag");
+            $result = $this->Common_model->allocate_booths($id,$manager);
+            if($result==true){
+                $this->session->set_flashdata('success', 'Booth '. $this->input->post("strbnameA") . ' successfully Allocated ');
+                redirect('common/allocatebooth', 'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Booth not Allocated.');
+                redirect('common/allocatebooth', 'refresh');
+            }
+        }
+    }
 
     /**
      * @
@@ -186,6 +209,46 @@ class Common extends CI_Controller
         $this->load->view('admin/list_appbooth',$data);
         $this->load->view('template/footer'); 
     } 
+    /**
+     * @
+     * date:20/04/2017
+     * Parameter:none
+     * Return type:array
+     * Description:function to approve the booth request
+     */
+    public function approvebooth()
+    {
+        $id= $this->input->post('id');
+        $result=$this->Common_model->approvebooth($id);
+        if($result==true){
+            $this->session->set_flashdata('success', 'Booth request Approved. ');
+            redirect('common/get_approvebooth', 'refresh');
+        }else{
+            $this->session->set_flashdata('error', 'Exception Occured');
+            redirect('common/get_approvebooth', 'refresh');
+        }
+    }
+
+    /**
+     * @
+     * date:20/04/2017
+     * Parameter:none
+     * Return type:array
+     * Description:function to reject the booth request
+     */
+    public function rejectbooth()
+    {
+        $id= $this->input->post('id');
+        $result=$this->Common_model->rejectbooth($id);
+        if($result==true){
+            $this->session->set_flashdata('success', 'Booth request Rejected. ');
+            redirect('common/get_approvebooth', 'refresh');
+        }else{
+            $this->session->set_flashdata('error', 'Exception Occured.');
+            redirect('common/get_approvebooth', 'refresh');
+        }
+    }
+
     /**
      * @
      * date:15/10/2016
@@ -341,5 +404,39 @@ class Common extends CI_Controller
                 redirect('common/list_sponsor', 'refresh');
             }
         }
-    }         
+    }
+    /**
+     * @
+     * date:22/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to reject exhibitor
+     */
+    public function reject_exhi()
+    {
+        $id= $this->input->post('id');
+        $result=$this->Common_model->reject_exhi($id);
+        if($this->Common_model->count_exhi_id($id)==0){
+            $this->session->set_flashdata('success','Exhibitor Rejected Successfully ');
+        }else{
+            $this->session->set_flashdata('error', 'Rejection failed.');
+        }    }
+    /**
+     * @
+     * date:22/04/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to approve exhibitor
+     */  
+    public function approve_exhi()
+    {
+        $aid= $this->input->post('id');
+        $result=$this->Common_model->approve_exhi($aid);
+        if($result == true){
+            // implement the email module here
+            $this->session->set_flashdata('success','Exhibitor Approved Successfully ');
+        }else{
+            $this->session->set_flashdata('error', 'Approval failed.');
+        }       
+    }           
 }

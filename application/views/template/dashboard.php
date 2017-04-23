@@ -45,6 +45,31 @@
                 <!-- START ROW -->
                 <div class="row">
 
+                    <!-- START Calendar -->
+                    <div class="col-lg-12">
+                        <!-- START ROW "Calendar" Header -->
+                        <div class="row m-b-2">
+                            <div class="col-md-4 col-sm-4 col-xs-6">
+                                <h4 class="m-b-0 f-w-300">Calendar</h4></div>
+                                <div class="col-md-4 col-sm-4 col-xs-4 col-xs-offset-2 col-sm-offset-4 col-md-offset-4 text-right">
+                                </div>
+                            </div>
+                            <!-- END ROW "Calendar" Header -->
+                            <div class="panel panel-default b-a-2 b-gray-dark no-bg">
+                                <div class="panel-body">
+                                    <div id="calendar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Calendar -->
+                    </div>
+                    <!-- END ROW -->
+
+                </div>
+                <?php } else if ($this->session->userdata('user_type')=='2'){?>
+                <div class="col-lg-12 m-t-2">
+                    <!-- START ROW -->
+                    <div class="row">
                         <!-- START Calendar -->
                         <div class="col-lg-12">
                             <!-- START ROW "Calendar" Header -->
@@ -66,44 +91,44 @@
                         <!-- END ROW -->
 
                     </div>
-                    <?php } else if ($this->session->userdata('user_type')=='2'){?>
+                    <?php } else if ($this->session->userdata('user_type')=='3'){?>
                     <div class="col-lg-12 m-t-2">
                         <!-- START ROW -->
                         <div class="row">
-                                <!-- START Calendar -->
-                                <div class="col-lg-12">
-                                    <!-- START ROW "Calendar" Header -->
-                                    <div class="row m-b-2">
-                                        <div class="col-md-4 col-sm-4 col-xs-6">
-                                            <h4 class="m-b-0 f-w-300">Calendar</h4></div>
-                                            <div class="col-md-4 col-sm-4 col-xs-4 col-xs-offset-2 col-sm-offset-4 col-md-offset-4 text-right">
-                                            </div>
-                                        </div>
-                                        <!-- END ROW "Calendar" Header -->
-                                        <div class="panel panel-default b-a-2 b-gray-dark no-bg">
-                                            <div class="panel-body">
-                                                <div id="calendar"></div>
-                                            </div>
+                            <!-- START Calendar -->
+                            <div class="col-lg-12">
+                                <!-- START ROW "Calendar" Header -->
+                                <div class="row m-b-2">
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
+                                        <h4 class="m-b-0 f-w-300">Calendar</h4></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-4 col-xs-offset-2 col-sm-offset-4 col-md-offset-4 text-right">
                                         </div>
                                     </div>
-                                    <!-- END Calendar -->
+                                    <!-- END ROW "Calendar" Header -->
+                                    <div class="panel panel-default b-a-2 b-gray-dark no-bg">
+                                        <div class="panel-body">
+                                            <div id="calendar"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- END ROW -->
-
+                                <!-- END Calendar -->
                             </div>
-                            <?php } ?>
-                        </div>
+                            <!-- END ROW -->
 
-                        <!-- END EDIT CONTENT -->
+                        </div>
+                        <?php }?>                          
                     </div>
 
+                    <!-- END EDIT CONTENT -->
                 </div>
-                <!-- END Content-->
-                <script type="text/javascript">
 
-                    $(document).ready(function() {
-                        var chk = <?php echo $_SESSION['user_type']; ?>;
-                        cal();
+            </div>
+            <!-- END Content-->
+            <script type="text/javascript">
+
+                $(document).ready(function() {
+                    var chk = <?php echo $_SESSION['user_type']; ?>;
+                    cal();
                         // if(chk = 1)
                         // {
                         //     graph_admin();

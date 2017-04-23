@@ -93,8 +93,8 @@
                         <td class="text-white"><?php echo $records->mobile; ?></td>
                         <td class="text-center v-a-m">
                             <div class="btn-group" role="group" aria-label="...">
-                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-userId="<?php echo $records->user_id; ?>" data-Name="<?php echo $records->name; ?>" data-Username="<?php echo $records->user_name  ; ?>" data-gender="<?php echo $records->gender ; ?>" data-age="<?php echo $records->age ; ?>" data-hname="<?php echo $records->housename ; ?>" data-sname="<?php echo $records->streetname ; ?>" data-city="<?php echo $records->city ; ?>" data-state="<?php echo $records->state ; ?>" data-pincode="<?php echo $records->pincode ; ?>" data-email="<?php echo $records->email ; ?>" data-mobile="<?php echo $records->mobile ; ?>"><span class="glyphicon glyphicon-check" data-toggle="tooltip" data-placement="top" title="Approve">&nbsp;</span></a>
-                                <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Reject">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" class="modaledit" data-userId="<?php echo $records->user_id; ?>" data-Name="<?php echo $records->name; ?>" data-Username="<?php echo $records->user_name  ; ?>" data-gender="<?php echo $records->gender ; ?>" data-age="<?php echo $records->age ; ?>" data-hname="<?php echo $records->housename ; ?>" data-sname="<?php echo $records->streetname ; ?>" data-city="<?php echo $records->city ; ?>" data-state="<?php echo $records->state ; ?>" data-pincode="<?php echo $records->pincode ; ?>" data-email="<?php echo $records->email ; ?>" data-mobile="<?php echo $records->mobile ; ?>"><span class="glyphicon glyphicon-check" data-toggle="tooltip" data-placement="top" title="Approve">&nbsp;</span></a>
+                                <a href="" class="modaldelete" data-userId="<?php echo $records->user_id; ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Reject">&nbsp;</span></a>
                             </div>
                         </td>                        
                     </tr>
@@ -111,12 +111,12 @@
 </div>
 
 <script>
-$("#datatables-example").DataTable({
-    dom: 'Bfrtip',
+    $("#datatables-example").DataTable({
+        dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+        'copy', 'csv', 'excel', 'pdf', 'print'
         ]
-});
+    });
     $('div.dataTables_filter input').attr('placeholder', 'Enter the text here');
 </script>
 <script>
@@ -125,39 +125,23 @@ $("#datatables-example").DataTable({
 <script>
     $(document).ready(function() {
      $(".modaldelete").click(function(){
-        if(confirm("Do you want to delete?"))
+        if(confirm("Do you want to Reject?"))
         {
-            var id = $(this).attr("data-journalId");
-            $.post( "<?php echo base_url(); ?>journal/delete_journal",{id:id}, function( data ) {
+            var id = $(this).attr("data-userId");
+            $.post( "<?php echo base_url(); ?>Common/reject_exhi",{id:id}, function( data ) {
                 location.reload();
             });
         }
     });
      $(".modaledit").click(function(){
-        var Id = $(this).attr("data-userId");            
-        var Name = $(this).attr("data-Name");
-        var Username = $(this).attr("data-username");
-        var Gender = $(this).attr("data-gender");
-        var Age = $(this).attr("data-age");
-        var Hname = $(this).attr("data-hname");
-        var Sname = $(this).attr("data-sname");
-        var City = $(this).attr("data-city");
-        var State = $(this).attr("data-state");
-        var Pincode = $(this).attr("data-pincode");
-        var Email = $(this).attr("data-email");
-        var Mobile = $(this).attr("data-mobile");           
-        $('#userId').val(Id);
-        $('#strname').val(Name) ;
-        $('#strusername').val(Username );
-        $('#strgender').val(Gender);
-        $('#strage').val(Age);
-        $('#strhname').val(Hname );
-        $('#strsname').val(Sname );
-        $('#strcity').val(City );
-        $('#strstate').val(State );
-        $('#strpinc').val(Pincode );
-        $('#stremail').val(Email) ;
-        $('#strmobile').val(Mobile);         
+        if(confirm("Do you want to Approve?"))
+        {
+            var aid = $(this).attr("data-userId");
+            $.post( "<?php echo base_url(); ?>Common/approve_exhi",{id:aid}, function( data ) {
+                location.reload();
+            });
+        }         
+
     });
  });
 </script>

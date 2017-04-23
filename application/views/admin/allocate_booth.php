@@ -101,33 +101,33 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-horizontal">
-                        <?php echo form_open('common/update_booth' , array('id' => 'up_booth'));?>
+                        <?php echo form_open('common/allocate_booths' , array('id' => 'allocate_booths'));?>
                         <div class="form-group">
                             <input type="hidden" id="bId" name="bId">
                             <label for="project_name" class="col-sm-3 control-label">Booth Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="strname" name="strname">
+                                <label class="form-control" id="strname" name="strname"></label>
                                 <?php echo form_error('strbname'); ?>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="project_name" class="col-sm-3 control-label">Space</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="strspace" name="strspace">
+                                <label class="form-control" id="strspace" name="strspace"></label>
                                 <?php echo form_error('strspace'); ?>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="from_datepicker" class="col-sm-3 control-label">Amount</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control"  id="stramount" name="stramount">
+                                <label class="form-control"  id="stramount" name="stramount"></label>
                                 <?php echo form_error('stramount'); ?>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="from_datepicker" class="col-sm-3 control-label">Manager</label>
                             <div class="col-sm-9">
-                                <select name="intPjtId" class="form-control" id="intPjtId">
+                                <select name="strmanag" class="form-control" id="strmanag">
                                 <option value=""> --- Select --- </option>
                                     <?php
                                     foreach ($manager as $rec):?>
@@ -162,32 +162,34 @@
 </script>
 <script>
     $(document).ready(function() {
-        jQuery.validator.addMethod("fullname", function (value, element) {
-            return this.optional(element) || /^[a-z\s]+$/i.test(value);
-        }, "Only alphabetes allowed");
-        $("#validations").validate({
+        $("#allocate_booths").validate({
             rules: {
-                strProjectName: {
-                    minlength: 2,
+                strname: {
                     required: true
                 },
-                dateFrom:{
+                strspace:{
                     required: true
                 },
-                dateTo:{
+                stramount:{
                     required: true
-                }
+                },
+                strmanag:{
+                    required: true
+                }                
             },
             messages: {
-                strProjectName: {
-                    required: "Project Name required"
+                strname: {
+                    required: "Booth Name Required"
                 },
-                dateFrom: {
-                    required: "Project Start Date is Required  required"
+                strspace: {
+                    required: "Space is Required"
                 },
-                dateTo: {
-                    required: "Project End Date is required"
-                }
+                stramount: {
+                    required: "Amount is Required"
+                },
+                strmanag: {
+                    required: "Manager Name is Required"
+                }                
             },
             errorElement: "span",
             errorPlacement: function(error, element) {
@@ -202,9 +204,9 @@
             var space = $(this).attr("data-space");
             var amount = $(this).attr("data-amount");         
             $('#bId').val(bid);
-            $('#strname').val(bname) ;
-            $('#strspace').val(space);
-            $('#stramount').val(amount) ;        
+            $('#strname').text(bname) ;           
+            $('#strspace').text(space);
+            $('#stramount').text(amount) ;        
         });
     });
 </script>

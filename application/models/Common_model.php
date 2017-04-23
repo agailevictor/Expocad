@@ -228,9 +228,9 @@ class Common_model extends CI_Model
      */
     public function delete_manager($id)      
     {
-       $this->db->where('user_id', $id);
-       $this->db->delete('tbl_users');       
-   }
+     $this->db->where('user_id', $id);
+     $this->db->delete('tbl_users');       
+ }
     /**
      * @
      * date: 02/04/2017
@@ -254,9 +254,9 @@ class Common_model extends CI_Model
      */
     public function delete_booth($id)      
     {
-       $this->db->where('bid', $id);
-       $this->db->delete('tbl_booth');       
-   }
+     $this->db->where('bid', $id);
+     $this->db->delete('tbl_booth');       
+    }
     /**
      * @
      * date: 02/04/2017
@@ -320,5 +320,93 @@ class Common_model extends CI_Model
         $this->db->set('sp_pin',$data['sp_pin']);               
         $this->db->update('tbl_sponsor');
         return true;
-    }                             
+    } 
+    /**
+     * @
+     * date: 20/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to allocate booth
+     */
+    public function allocate_booths($id,$manager)
+    {
+        $this->db->where('bid',$id);
+        $this->db->set('mid',$manager);
+        $this->db->set('is_all','Y');                        
+        $this->db->update('tbl_booth');
+        return true;
+    }
+
+    /**
+     * @
+     * date: 20/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to approve booth
+     */
+    public function approvebooth($id)
+    {
+        $this->db->where('bid',$id);
+        $this->db->set('status',1);                        
+        $this->db->update('tbl_booth');
+        return true;
+    } 
+
+    /**
+     * @
+     * date: 20/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to reject booth
+     */
+    public function rejectbooth($id)
+    {
+        $this->db->where('bid',$id);
+        $this->db->set('exid',null);          
+        $this->db->set('status',0);                        
+        $this->db->update('tbl_booth');
+        return true;
+    }
+    /**
+     * @
+     * date: 24/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to approve exhibitor
+     */
+    public function approve_exhi($id)
+    {
+        $this->db->where('user_id',$id);         
+        $this->db->set('status',1);                        
+        $this->db->update('tbl_users');
+        return true;
+    }
+
+    /**
+     * @
+     * date: 24/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to reject exhibitor
+     */
+    public function reject_exhi($id)
+    {
+     $this->db->where('user_id', $id);
+     $this->db->delete('tbl_users'); 
+    }
+    /**
+     * @
+     * date: 24/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to check reject success or fail
+     */
+    public function count_exhi_id($id)
+    {
+        $this->db->from('tbl_users');
+     $this->db->where('user_id', $id);
+        $query = $this->db->get();
+        $rowcount = $query->num_rows();
+        return $rowcount;        
+    }                                               
 }
