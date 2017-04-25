@@ -431,11 +431,22 @@ class Common extends CI_Controller
     public function approve_exhi()
     {
         $aid= $this->input->post('id');
+        $temail = $this->input->post('mid');
         $result=$this->Common_model->approve_exhi($aid);
         if($result == true){
             // implement the email module here
-            $this->session->set_flashdata('success','Exhibitor Approved Successfully ');
-        }else{
+            $res = $this->Common_model->send_email($temail);
+            if($res == true)
+            {
+                $this->session->set_flashdata('success','Exhibitor Approved Successfully ');
+            }
+            else
+            {
+             $this->session->set_flashdata('error', 'Check Internet Connection.');               
+            }
+        }
+        else
+        {
             $this->session->set_flashdata('error', 'Approval failed.');
         }       
     }           

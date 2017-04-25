@@ -8,6 +8,7 @@ class Common_model extends CI_Model
         parent::__construct();
 
         $this->load->database();
+        $this->load->library('email');        
     }
 
     /**
@@ -256,7 +257,7 @@ class Common_model extends CI_Model
     {
      $this->db->where('bid', $id);
      $this->db->delete('tbl_booth');       
-    }
+ }
     /**
      * @
      * date: 02/04/2017
@@ -393,7 +394,7 @@ class Common_model extends CI_Model
     {
      $this->db->where('user_id', $id);
      $this->db->delete('tbl_users'); 
-    }
+ }
     /**
      * @
      * date: 24/04/2017
@@ -404,9 +405,43 @@ class Common_model extends CI_Model
     public function count_exhi_id($id)
     {
         $this->db->from('tbl_users');
-     $this->db->where('user_id', $id);
+        $this->db->where('user_id', $id);
         $query = $this->db->get();
         $rowcount = $query->num_rows();
         return $rowcount;        
+    }
+    /**
+     * @
+     * date: 23/04/2017
+     * Parameter:none
+     * Return type:boolean
+     * Description:function to send email
+     */
+    public function send_email($temail)
+    {
+         // AutoLoader
+        require("application/libraries/PHPMailerAutoload.php");
+         // Configure email library - PHPMailer
+        $mail = new PHPMailer(); // create a new object
+        $mail->IsSMTP(); // enable SMTP
+        //$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+        $mail->SMTPAuth = true; // authentication enabled
+        $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+        $mail->Host = "smtp.gmail.com";
+        $mail->Port = 465; // or 587
+        $mail->IsHTML(true);
+        $mail->Username = "agailevictor1@gmail.com";
+        $mail->Password = "agaile@123";
+        $mail->SetFrom("Expocad");
+        $mail->Subject = "Approval of Registration";
+        $mail->Body = "Dear User,<br /><br />Your request for the registration is Accepted.<br /><br />Thanks<br />Expocad Team";
+        $mail->AddAddress($temail);
+
+        if(!$mail->Send()) {
+            // echo "Mailer Error: " . $mail->ErrorInfo;
+            return false;
+        } else {
+            return true;
+        }
     }                                               
 }

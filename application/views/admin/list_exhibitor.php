@@ -137,8 +137,9 @@
         if(confirm("Do you want to Approve?"))
         {
             var aid = $(this).attr("data-userId");
-            $.post( "<?php echo base_url(); ?>Common/approve_exhi",{id:aid}, function( data ) {
-                location.reload();
+            var emai = $(this).attr("data-email");
+            $.post( "<?php echo base_url(); ?>Common/approve_exhi",{id:aid,mid:emai}, function( data ) {
+            location.reload();
             });
         }         
 
