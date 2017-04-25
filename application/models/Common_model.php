@@ -419,7 +419,7 @@ class Common_model extends CI_Model
      */
     public function send_email($temail)
     {
-         // AutoLoader
+         // include AutoLoader
         require("application/libraries/PHPMailerAutoload.php");
          // Configure email library - PHPMailer
         $mail = new PHPMailer(); // create a new object
@@ -430,8 +430,8 @@ class Common_model extends CI_Model
         $mail->Host = "smtp.gmail.com";
         $mail->Port = 465; // or 587
         $mail->IsHTML(true);
-        $mail->Username = "agailevictor1@gmail.com";
-        $mail->Password = "agaile@123";
+        $mail->Username = base64_decode('YWdhaWxldmljdG9yMUBnbWFpbC5jb20='); //gmail id
+        $mail->Password = base64_decode('YWdhaWxlQDEyMw=='); //gmail password
         $mail->SetFrom("Expocad");
         $mail->Subject = "Approval of Registration";
         $mail->Body = "Dear User,<br /><br />Your request for the registration is Accepted.<br /><br />Thanks<br />Expocad Team";

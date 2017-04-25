@@ -442,12 +442,12 @@ class Common extends CI_Controller
             }
             else
             {
-             $this->session->set_flashdata('error', 'Check Internet Connection.');               
-            }
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'Approval failed.');
-        }       
-    }           
+               $this->session->set_flashdata('error', 'Check Internet Connection.');               
+           }
+       }
+       else
+       {
+        $this->session->set_flashdata('error', 'Approval failed.');
+    }       
+}           
 }
