@@ -191,4 +191,42 @@ class Manager extends CI_Controller
         }
     }
 
+    /**
+     * @
+     * date:05/01/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to delete manager
+     */
+    public function approve_request(){
+        $id= $this->input->post('id');
+        if($id) {
+            $result = $this->Manager_model->approve_request($id);
+            if ($result == true) {
+                $this->session->set_flashdata('success', 'Request successfully forwarded to administrator');
+            } else {
+                $this->session->set_flashdata('error', 'Failed.');
+            }
+        }
+    }
+
+ /**
+ * @
+ * date:05/01/2017
+ * Parameter:none
+ * Return type:none
+ * Description:function to delete manager
+ */
+    public function reject_request(){
+        $id= $this->input->post('id');
+        if($id) {
+            $result = $this->Manager_model->reject_request($id);
+            if ($result == true) {
+                $this->session->set_flashdata('success', 'Request rejected');
+            } else {
+                $this->session->set_flashdata('error', 'Failed');
+            }
+        }
+    }
+
 }

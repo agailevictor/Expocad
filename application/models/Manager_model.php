@@ -124,4 +124,33 @@ class Manager_model extends CI_Model
         $this->db->set('staffid',$data['strstaff_id']);
         return $this->db->update('tbl_booth');
     }
+
+    /**
+     * @
+     * date: 23/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get approve list
+     */
+    public function approve_request($id)
+    {
+        $this->db->where('bid',$id);
+        $this->db->set('status',2);
+        return $this->db->update('tbl_booth');
+    }
+
+     /**
+     * @
+     * date: 23/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get approve list
+     */
+    public function reject_request($id)
+    {
+        $this->db->where('bid',$id);
+        $this->db->set('exid',null);
+        $this->db->set('status',0);
+        return $this->db->update('tbl_booth');
+    }
 }

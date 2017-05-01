@@ -205,7 +205,7 @@
             }
 
         });
-        $(".modaldelete").click(function(){
+        /*$(".modaldelete").click(function(){
             if(confirm("Do you want to delete?"))
             {
                 var id = $(this).attr("data-journalId");
@@ -213,7 +213,7 @@
                     location.reload();
                 });
             }
-        });
+        });*/
         $(".modaledit").click(function(){
             var bid = $(this).attr("data-bId");
             var bname = $(this).attr("data-bname");
