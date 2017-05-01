@@ -105,7 +105,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-horizontal">
-                            <?php echo form_open('common/update_booth' , array('id' => 'up_booth'));?>
+                            <?php echo form_open('Manager/alloc_booth_staff' , array('id' => 'up_booth'));?>
                             <div class="form-group">
                                 <input type="hidden" id="bId" name="bId">
                                 <label for="project_name" class="col-sm-3 control-label">Booth Name</label>
@@ -131,7 +131,7 @@
                             <div class="form-group">
                             <label for="from_datepicker" class="col-sm-3 control-label">Staff</label>
                                 <div class="col-sm-9">
-                                    <select name="intPjtId" class="form-control" id="intPjtId">
+                                    <select name="strstaff" class="form-control" id="strstaff">
                                         <option value=""> --- Select --- </option>
                                         <?php
                                         foreach ($staffs as $rec):?>
@@ -169,28 +169,33 @@
         jQuery.validator.addMethod("fullname", function (value, element) {
             return this.optional(element) || /^[a-z\s]+$/i.test(value);
         }, "Only alphabetes allowed");
-        $("#validations").validate({
+        $("#up_booth").validate({
             rules: {
-                strProjectName: {
-                    minlength: 2,
+                strname: {
                     required: true
                 },
-                dateFrom:{
+                strspace:{
                     required: true
                 },
-                dateTo:{
+                stramount:{
+                    required: true
+                },
+                strstaff:{
                     required: true
                 }
             },
             messages: {
-                strProjectName: {
-                    required: "Project Name required"
+                strname: {
+                    required: "Boooth Name required"
                 },
-                dateFrom: {
-                    required: "Project Start Date is Required  required"
+                strspace: {
+                    required: "Space is Required  required"
                 },
-                dateTo: {
-                    required: "Project End Date is required"
+                stramount: {
+                    required: "Amount is required"
+                },
+                strstaff: {
+                    required: "Staff is required"
                 }
             },
             errorElement: "span",
@@ -200,7 +205,7 @@
             }
 
         });
-        $(".modaldelete").click(function(){
+        /*$(".modaldelete").click(function(){
             if(confirm("Do you want to delete?"))
             {
                 var id = $(this).attr("data-journalId");
@@ -208,7 +213,7 @@
                     location.reload();
                 });
             }
-        });
+        });*/
         $(".modaledit").click(function(){
             var bid = $(this).attr("data-bId");
             var bname = $(this).attr("data-bname");

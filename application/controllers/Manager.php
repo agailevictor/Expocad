@@ -132,12 +132,10 @@ class Manager extends CI_Controller
         $this->form_validation->set_rules('strpinc', 'Pincode', 'trim|required|numeric');
         $this->form_validation->set_rules('stremail', 'Email', 'trim|required');
         $this->form_validation->set_rules('strmobile', 'Mobile', 'trim|required|numeric');
-        //if ($this->form_validation->run() == TRUE) {
+        if ($this->form_validation->run() == TRUE) {
             $id= $this->input->post('userId');
             $data = array('user_name' =>$this->input->post("strusername"),'name' =>$this->input->post("strname"),'gender' => $this->input->post("strgender"),'age' =>$this->input->post("strage"),'housename' =>$this->input->post("strhname"),'streetname' => $this->input->post("strsname"),'city' =>$this->input->post("strcity"),'state' =>$this->input->post("strstate"),'pincode' => $this->input->post("strpinc"),'email' =>$this->input->post("stremail"),'mobile' =>$this->input->post("strmobile"));
             $result = $this->Manager_model->update_staff($id,$data);
-        print_r($result);
-        exit;
             if($result==true){
                 $this->session->set_flashdata('success', 'Staff '. $this->input->post("strnameA") . ' successfully updated ');
                 redirect('manager/staff', 'refresh');
@@ -145,7 +143,90 @@ class Manager extends CI_Controller
                 $this->session->set_flashdata('error', 'Staff Details not updated.');
                 redirect('manager/staff', 'refresh');
             }
-        //}
+        }
+    }
+
+    /**
+     * @
+     * date:05/01/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to delete manager
+     */
+    public function delete_staff(){
+        $id= $this->input->post('id');
+        if($id) {
+            $result = $this->Manager_model->delete_staff($id);
+            if ($result == true) {
+                $this->session->set_flashdata('success', 'Staff details successfully deleted ');
+            } else {
+                $this->session->set_flashdata('error', 'Staff deletion failed.');
+            }
+        }
+    }
+
+    /**
+     * @
+     * date:05/01/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to delete manager
+     */
+    public function alloc_booth_staff(){
+        $this->form_validation->set_rules('strname', 'Booth name', 'trim|required');
+        $this->form_validation->set_rules('strspace', 'Space', 'trim|required');
+        $this->form_validation->set_rules('stramount', 'Amount', 'trim|required');
+        $this->form_validation->set_rules('strstaff', 'Staff', 'trim|required');
+        if ($this->form_validation->run() == TRUE) {
+            $id= $this->input->post('bId');
+            $data = array('strstaff_id' =>$this->input->post("strstaff"));
+            $result = $this->Manager_model->alloc_booth_staff($id,$data);
+            if($result==true){
+                $this->session->set_flashdata('success', 'Booth '. $this->input->post("strname") . ' successfully allocated ');
+                redirect('manager/allocate_staff', 'refresh');
+            }else{
+                $this->session->set_flashdata('error', 'Booth allocation failed.');
+                redirect('manager/allocate_staff', 'refresh');
+            }
+        }
+    }
+
+    /**
+     * @
+     * date:05/01/2017
+     * Parameter:none
+     * Return type:none
+     * Description:function to delete manager
+     */
+    public function approve_request(){
+        $id= $this->input->post('id');
+        if($id) {
+            $result = $this->Manager_model->approve_request($id);
+            if ($result == true) {
+                $this->session->set_flashdata('success', 'Request successfully forwarded to administrator');
+            } else {
+                $this->session->set_flashdata('error', 'Failed.');
+            }
+        }
+    }
+
+ /**
+ * @
+ * date:05/01/2017
+ * Parameter:none
+ * Return type:none
+ * Description:function to delete manager
+ */
+    public function reject_request(){
+        $id= $this->input->post('id');
+        if($id) {
+            $result = $this->Manager_model->reject_request($id);
+            if ($result == true) {
+                $this->session->set_flashdata('success', 'Request rejected');
+            } else {
+                $this->session->set_flashdata('error', 'Failed');
+            }
+        }
     }
 
 }

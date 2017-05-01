@@ -76,8 +76,8 @@
                         <td class="text-white"><?php echo $records->amount; ?></td>
                         <td class="text-center v-a-m">
                             <div class="btn-group" role="group" aria-label="...">
-                                <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-bId="<?php echo $records->bid; ?>" data-bname="<?php echo $records->bname; ?>" data-exhi="<?php echo $records->name; ?>" data-space="<?php echo $records->space; ?>" data-amount="<?php echo $records->amount; ?>"><span class="glyphicon glyphicon-check" data-toggle="tooltip" data-placement="top" title="Approve">&nbsp;</span></a>
-                                <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Reject">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" class="modaledit" data-bId="<?php echo $records->bid; ?>"><span class="glyphicon glyphicon-ok" data-toggle="tooltip" data-placement="top" title="Approve">&nbsp;</span></a>
+                                <a href="" data-toggle="modal" class="modaldelete"  data-bId="<?php echo $records->bid; ?>"><span class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top" title="Reject">&nbsp;</span></a>
                             </div>
                         </td>                        
                     </tr>
@@ -102,25 +102,23 @@
 </script>
 <script>
     $(document).ready(function() {
-        $(".modaldelete").click(function(){
-            if(confirm("Do you want to reject?"))
-            {
-                var id = $(this).attr("data-journalId");
-                $.post( "<?php echo base_url(); ?>journal/delete_journal",{id:id}, function( data ) {
+
+        $(".modaledit").click(function(){
+            if(confirm("Do you want to approve this request?")) {
+                var id = $(this).attr("data-bId");
+                $.post( "<?php echo base_url(); ?>Manager/approve_request",{id:id}, function( data ) {
                     location.reload();
                 });
             }
-        });
-
-        $(".modaledit").click(function(){
-            var bid = $(this).attr("data-bId");            
-            var bname = $(this).attr("data-bname");
-            var space = $(this).attr("data-space");
-            var amount = $(this).attr("data-amount");        
-                $('#bId').val(bid);
-                $('#strbname').val(bname) ;
-                $('#strspace').val(space);
-                $('#stramount').val(amount) ;        
             });
+    $(".modaldelete").click(function(){
+        if(confirm("Do you want to reject this request?"))
+        {
+            var id = $(this).attr("data-bId");
+            $.post( "<?php echo base_url(); ?>Manager/reject_request",{id:id}, function( data ) {
+                location.reload();
+            });
+        }
+    });
     });
 </script>
