@@ -97,4 +97,31 @@ class Manager_model extends CI_Model
         $this->db->set('mobile',$data['mobile']);
         return $this->db->update('tbl_users');
     }
+
+    /**
+     * @
+     * date: 23/10/2016
+     * Parameter:none
+     * Return type:array
+     * Description:function to get approve list
+     */
+    public function delete_staff($id)
+    {
+        $this->db->where('user_id', $id);
+        return $this->db->delete('tbl_users');
+    }
+
+ /**
+ * @
+ * date: 05/01/2017
+ * Parameter:none
+ * Return type:array
+ * Description:function to get approve list
+ */
+    public function alloc_booth_staff($id,$data)
+    {
+        $this->db->where('bid',$id);
+        $this->db->set('staffid',$data['strstaff_id']);
+        return $this->db->update('tbl_booth');
+    }
 }

@@ -94,7 +94,7 @@
                             <td class="text-center v-a-m">
                                 <div class="btn-group" role="group" aria-label="...">
                                     <a href="" data-toggle="modal" data-target="#myModaledit" class="modaledit" data-userId="<?php echo $records->user_id; ?>" data-Name="<?php echo $records->name; ?>" data-Username="<?php echo $records->user_name  ; ?>" data-gender="<?php echo $records->gender ; ?>" data-age="<?php echo $records->age ; ?>" data-hname="<?php echo $records->housename ; ?>" data-sname="<?php echo $records->streetname ; ?>" data-city="<?php echo $records->city ; ?>" data-state="<?php echo $records->state ; ?>" data-pincode="<?php echo $records->pincode ; ?>"  data-email="<?php echo $records->email ; ?>" data-mobile="<?php echo $records->mobile ; ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit">&nbsp;</span></a>
-                                    <a href="" data-toggle="modal" class="modaldelete"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete">&nbsp;</span></a>
+                                    <a href="" data-toggle="modal" class="modaldelete" data-userId="<?php echo $records->user_id; ?>"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Delete">&nbsp;</span></a>
                                 </div>
                             </td>
                         </tr>
@@ -251,7 +251,11 @@
                             <div class="form-group">
                                 <label for="from_datepicker" class="col-sm-3 control-label">Gender</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="strgender" name="strgender">
+                                    <select name="strgender" class="form-control" id="strgender">
+                                        <option value=""> --- Select --- </option>
+                                        <option value="1">Female</option>
+                                        <option value="2">Male</option>
+                                    </select>
                                     <?php echo form_error('strgender'); ?>
                                 </div>
                             </div>
@@ -347,7 +351,7 @@
                     required: true
                 },
                 strusernameA:{
-                    minlength : 2,
+                    minlength : 6,
                     required: true
                 },
                 strgenderA:{
@@ -465,8 +469,8 @@
         $(".modaldelete").click(function(){
             if(confirm("Do you want to delete?"))
             {
-                var id = $(this).attr("data-journalId");
-                $.post( "<?php echo base_url(); ?>journal/delete_journal",{id:id}, function( data ) {
+                var id = $(this).attr("data-userId");
+                $.post( "<?php echo base_url(); ?>Manager/delete_staff",{id:id}, function( data ) {
                     location.reload();
                 });
             }
@@ -487,7 +491,7 @@
             $('#userId').val(Id);
             $('#strname').val(Name) ;
             $('#strusername').val(Username );
-            $('#strgender').val(Gender);
+            $('#strgender').val(Gender == 'Female' ? "1" : "2");
             $('#strage').val(Age);
             $('#strhname').val(Hname );
             $('#strsname').val(Sname );
