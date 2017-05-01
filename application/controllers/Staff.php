@@ -60,7 +60,7 @@ class Staff extends CI_Controller
         $this->form_validation->set_rules('stremailA', 'Email', 'trim|required');
         $this->form_validation->set_rules('strmobileA', 'Mobile', 'trim|required|numeric');
         if ($this->form_validation->run() == TRUE) {
-            $data = array('user_name' =>$this->input->post("strusernameA"),'password' =>"ZGVtbw==",'name' =>$this->input->post("strnameA"),'gender' => $this->input->post("strgenderA"),'age' =>$this->input->post("strageA"),'housename' =>$this->input->post("strhnameA"),'streetname' => $this->input->post("strsnameA"),'city' =>$this->input->post("strcityA"),'state' =>$this->input->post("strstateA"),'pincode' => $this->input->post("strpincA"),'email' =>$this->input->post("stremailA"),'mobile' =>$this->input->post("strmobileA"),'type' =>3,'parent_id' =>$this->session->userdata('user_id'),'status' =>3);
+            $data = array('user_name' =>$this->input->post("strusernameA"),'password' =>"ZGVtbw==",'name' =>$this->input->post("strnameA"),'gender' => $this->input->post("strgenderA"),'age' =>$this->input->post("strageA"),'housename' =>$this->input->post("strhnameA"),'streetname' => $this->input->post("strsnameA"),'city' =>$this->input->post("strcityA"),'state' =>$this->input->post("strstateA"),'pincode' => $this->input->post("strpincA"),'email' =>$this->input->post("stremailA"),'mobile' =>$this->input->post("strmobileA"),'type' =>5,'parent_id' =>$this->session->userdata('user_id'),'status' =>3);
             $result = $this->Staff_model->add_exhibitor($data);
             if($result==true){
                 $this->session->set_flashdata('success', 'Exhibitor '. $this->input->post("strnameA") . ' successfully added ');
