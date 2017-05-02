@@ -62,7 +62,7 @@
                         <tr>
                             <th  style="font-weight: 600; color: #2c97de">No</th>
                             <th  style="font-weight: 600; color: #2c97de">Product Name</th>
-                            <!-- <th  style="font-weight: 600; color: #2c97de">Image</th> -->
+                            <th  style="font-weight: 600; color: #2c97de">Image</th>
                             <th  style="font-weight: 600; color: #2c97de">Decription</th>
                             <th  style="font-weight: 600; color: #2c97de">Actions</th>
                         </tr>
@@ -73,11 +73,11 @@
                         <tr>
                             <td class="text-white"><?php echo $sno; ?></td>
                             <td class="text-white"><?php echo $records->pname; ?></td>
-                            <!-- <td class="text-white"><?php echo $records->space; ?></td> -->
-                            <td class="text-white"><?php echo $records->decription; ?></td>
+                            <td><?php echo '<img src="data:image/jpg;base64,' . $records->Images . '" width="75" height="75">';?></td>
+                            <td class="text-white"><?php echo $records->description; ?></td>
                             <td class="text-center v-a-m">
                                 <div class="btn-group" role="group" aria-label="...">
-                                    <a href="" data-toggle="modal" data-target="#myModalpay" class="modaledit" data-bId="<?php echo $records->bid; ?>" data-bname="<?php echo $records->bname; ?>" data-space="<?php echo $records->space; ?>" data-amount="<?php echo $records->amount; ?>" data-status="<?php echo $records->status ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Request">&nbsp;</span></a>
+                                    <a href="" data-toggle="modal" data-target="#myModalpay" class="modaledit" data-pId="<?php echo $records->pid; ?>" data-eId="<?php echo $records->exid; ?>" data-pname="<?php echo $records->pname; ?>" data-description="<?php echo $records->description; ?>"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Request">&nbsp;</span></a>
                                 </div>
                             </td>
                         </tr>
@@ -104,26 +104,27 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-horizontal">
-                        <?php echo form_open('Exhi/add_product' , array('id' => 'ad_product'));?>
+                        <!-- <?php echo form_open_multipart('Exhi/add_product' , array('id' => 'ad_product'));?> -->
+                        <form method="POST" action=<?php echo base_url(); ?>Exhi/add_product enctype="multipart/form-data" id ='ad_product'>
                         <div class="form-group">                      
                             <label for="project_name" class="col-sm-3 control-label">Product Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="strbnameA" name="strbnameA">
-                                <?php echo form_error('strbnameA'); ?>
+                                <input type="text" class="form-control" id="strpnameA" name="strpnameA">
+                                <?php echo form_error('strpnameA'); ?>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="project_name" class="col-sm-3 control-label">Image</label>
                             <div class="col-sm-9">
-                               <input type="file" id="strspaceA" name="strspaceA">
-                                <?php echo form_error('strspaceA'); ?>
+                               <input type="file" id="strimageA" name="strimageA">
+                                <?php echo form_error('strimageA'); ?>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="from_datepicker" class="col-sm-3 control-label">Description</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control"  id="stramountA" name="stramountA">
-                                <?php echo form_error('stramountA'); ?>
+                                <input type="text" class="form-control"  id="strdescA" name="strdescA">
+                                <?php echo form_error('strdescA'); ?>
                             </div>
                         </div>                                  
                     </div>
@@ -137,83 +138,8 @@
             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
             <input type="submit" class="btn btn-primary btn-sm" value="Submit" />
         </div>
-        <?php echo form_close();?>
-    </div>
-</div>
-</div>
-
-
-
-
-
-
-<div class="modal fade" id="myModalpay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add Payment Details</h4>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="form-horizontal">
-                        <?php echo form_open('Exhi/req_booth' , array('id' => 're_booth'));?>
-                        <div class="form-group">
-                            <input type="hidden" id="bId" name="bId">                        
-                            <label for="project_name" class="col-sm-3 control-label">Booth Name</label>
-                            <div class="col-sm-9">
-                                <label class="form-control" id="strbnameA" name="strbnameA"></label>
-                                <?php echo form_error('strbnameA'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="project_name" class="col-sm-3 control-label">Space</label>
-                            <div class="col-sm-9">
-                                <label class="form-control" id="strspaceA" name="strspaceA"></label>
-                                <?php echo form_error('strspaceA'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="from_datepicker" class="col-sm-3 control-label">Amount</label>
-                            <div class="col-sm-9">
-                                <label class="form-control"  id="stramountA" name="stramountA"></label>
-                                <?php echo form_error('stramountA'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="from_datepicker" class="col-sm-3 control-label">Name on Card</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control"  id="strNameA" name="strNameA">
-                                <?php echo form_error('strNameA'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="from_datepicker" class="col-sm-3 control-label">Card Number</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control"  id="strCnoA" name="strCnoA">
-                                <?php echo form_error('strCnoA'); ?>
-                            </div>
-                        </div>                        
-                        <div class="form-group">
-                            <label for="from_datepicker" class="col-sm-3 control-label">CVV</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control"  id="strCvvA" name="strCvvA">
-                                <?php echo form_error('strCvvA'); ?>
-                            </div>
-                        </div>                                                
-                    </div>
-                    <div class="col-md-4 col-md-offset-2"></div>
-
-                    <!-- END Basic Elements -->
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary btn-sm" value="Submit" />
-        </div>
-        <?php echo form_close();?>
+        <!-- <?php echo form_close();?> -->
+        </form>
     </div>
 </div>
 </div>
@@ -227,22 +153,17 @@
 </script>
 <script>
     $(document).ready(function() {
-        $("#re_booth").validate({
+        $("#ad_product").validate({
             rules: {
-                strNameA: {
+                strpnameA: {
                     required: true
                 },
-                strCvvA:{
+                strimageA:{
                     required: true,
-                    minlength: 3,                    
-                    maxlength: 3,                    
-                    number:true
+                    accept: "image/jpeg,image/jpg,image/png"
                 },
-                strCnoA:{
-                    required: true,
-                    minlength: 10,                    
-                    maxlength: 10,                    
-                    number:true                    
+                strdescA:{
+                    required: true                   
                 }
             },highlight: function(element) {
                 $(element).parent('div').addClass('has-error m-b-1');

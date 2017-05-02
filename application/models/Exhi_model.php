@@ -26,5 +26,9 @@ class Exhi_model extends CI_Model
     {
          $query = "SELECT * FROM tbl_products where exid =" .$id;
         return $this->db->query($query)->result();       
+    }
+    public function add_product($data){
+        $this->db->insert('tbl_products', $data);
+        return true;
     }     
 }

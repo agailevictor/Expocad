@@ -48,4 +48,24 @@ class Exhi extends CI_Controller
       $this->load->view('Exhi/eProducts',$data);
       $this->load->view('template/footer');      
   }
+  public function add_product(){
+    $this->form_validation->set_rules('strpnameA', 'Product Name', 'trim|required');
+    $this->form_validation->set_rules('strdescA', 'Description', 'trim|required');
+    if ($this->form_validation->run() == TRUE) {
+
+     $imagename=$_FILES["strimageA"]["name"];
+     $base64 = base64_encode(file_get_contents($_FILES['strimageA']['tmp_name']));
+    //Get the content of the image and then add slashes to it 
+     $imagetmp=addslashes (file_get_contents($_FILES['strimageA']['tmp_name']));
+     $data = array('exid' =>$this->session->userdata('user_id'),'pname' =>$this->input->post("strpnameA"),'Images' => $base64,'description' => $this->input->post("strdescA"));
+     $result = $this->Exhi_model->add_product($data);
+     if($result==true){
+        $this->session->set_flashdata('success', 'Product '. $this->input->post("strbnameA") . ' successfully Added ');
+        redirect('Exhi/ListProducts', 'refresh');
+    }else{
+        $this->session->set_flashdata('error', 'Product not added.');
+        redirect('Exhi/ListProducts', 'refresh');
+    }        
+}
+}
 }
